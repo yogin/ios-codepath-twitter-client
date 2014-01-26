@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BDBOAuth1Manager/BDBOAuth1RequestOperationManager.h>
+#import <BDBOAuth1Manager/BDBOAuth1SessionManager.h>
 
 @interface IDZAppDelegate : UIResponder <UIApplicationDelegate>
 

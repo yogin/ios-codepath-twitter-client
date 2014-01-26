@@ -7,16 +7,63 @@
 //
 
 #import "IDZAppDelegate.h"
+#import "IDZTwitterClient.h"
+#import "IDZUser.h"
+
+@interface IDZAppDelegate ()
+
+@property (nonatomic, readwrite) IDZTwitterClient *twitterClient;
+
+@end
 
 @implementation IDZAppDelegate
 
+- (id)init
+{
+	self = [super init];
+	if (self) {
+		self.twitterClient = [IDZTwitterClient instance];
+	}
+	
+	return self;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+	[self updateRootViewController];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updateRootViewController)
+												 name:UserDidLoginNotification object:nil];
+	
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updateRootViewController)
+												 name:UserDidLogoutNotification object:nil];
+
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+	return [self.twitterClient authorizationCallbackURL:url onSuccess:^{
+			[self updateRootViewController];
+		}];
+}
+
+- (void)updateRootViewController
+{
+	UIStoryboard *storyboard;
+
+	if ([IDZTwitterClient isAuthorized]) {
+		storyboard = [UIStoryboard storyboardWithName:@"LoggedIn" bundle:[NSBundle mainBundle]];
+	}
+	else {
+		storyboard = [UIStoryboard storyboardWithName:@"LoggedOut" bundle:[NSBundle mainBundle]];
+
+	}
+	
+	self.window.rootViewController = [storyboard instantiateInitialViewController];
+	[self.window makeKeyAndVisible];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
