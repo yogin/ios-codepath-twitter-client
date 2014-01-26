@@ -11,6 +11,7 @@
 #import "IDZUser.h"
 #import "IDZTweet.h"
 #import "IDZTweetCell.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface IDZTweetsViewController ()
 
@@ -138,6 +139,7 @@
 	cell.messageText.text = tweet.text;
 	cell.userDisplayName.text = tweet.author.name;
 	cell.userTagName.text = tweet.author.screenName;
+	[cell.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
 
     if (indexPath.row > (self.tweets.count - 10) && ![self.nextTweetsTimer isValid]) {
 		// if we are close to the end of the list, we need to start loading more tweets

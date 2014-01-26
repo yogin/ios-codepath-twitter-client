@@ -1,4 +1,11 @@
 PODS:
+  - AFNetworking (2.0.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
   - AFNetworking/NSURLConnection (2.0.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -8,6 +15,8 @@ PODS:
   - AFNetworking/Reachability (2.0.3)
   - AFNetworking/Security (2.0.3)
   - AFNetworking/Serialization (2.0.3)
+  - AFNetworking/UIKit (2.0.3):
+    - AFNetworking/NSURLConnection
   - BDBOAuth1Manager (1.0.2):
     - AFNetworking/NSURLConnection (~> 2.0.0)
     - AFNetworking/NSURLSession (~> 2.0.0)
@@ -15,6 +24,7 @@ PODS:
   - Toast (2.2)
 
 DEPENDENCIES:
+  - AFNetworking (~> 2.0)
   - BDBOAuth1Manager (~> 1.0.2)
   - MBProgressHUD (~> 0.8)
   - Toast (~> 2.2)
