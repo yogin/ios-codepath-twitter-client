@@ -102,6 +102,8 @@
 												 requestToken:[BDBOAuthToken tokenWithQueryString:url.query]
 													  success:^(BDBOAuthToken *accessToken) {
 														  NSLog(@"access token %@", accessToken);
+														  [self.networkManager.requestSerializer saveAccessToken:accessToken];
+
 														  if (completion) {
 															  dispatch_async(dispatch_get_main_queue(), ^{
 																completion();
