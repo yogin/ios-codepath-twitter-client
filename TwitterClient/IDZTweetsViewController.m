@@ -79,12 +79,9 @@
 {
 	self.tweets = [[NSMutableArray alloc] init];
 	
-	[IDZTweet fetchLast:25
+	[IDZTweet fetchLast:50
 			withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
-				for (NSDictionary *data in responseObject) {
-					[self.tweets addObject:[IDZTweet tweetFromJSON:data]];
-				}
-				
+				[self appendTweets:responseObject];
 				[self.tableView reloadData];
 				[self.refreshControl endRefreshing];
 			}
@@ -98,13 +95,10 @@
 	IDZTweet *lastTweet = self.tweets[self.tweets.count - 1];
 	
 	if (lastTweet) {
-		[IDZTweet fetchNext:25
+		[IDZTweet fetchNext:50
 					  until:lastTweet.tweetId
 				withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
-					for (NSDictionary *data in responseObject) {
-						[self.tweets addObject:[IDZTweet tweetFromJSON:data]];
-					}
-					
+					[self appendTweets:responseObject];
 					[self.tableView reloadData];
 				}
 				 andFailure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -116,17 +110,22 @@
 	}
 }
 
+- (void)appendTweets:(id)rawTweets
+{
+	for (NSDictionary *data in rawTweets) {
+		[self.tweets addObject:[IDZTweet tweetFromJSON:data]];
+	}
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return self.tweets.count;
 }
 
@@ -140,52 +139,13 @@
 	cell.userDisplayName.text = tweet.author.name;
 	cell.userTagName.text = tweet.author.screenName;
 
-    if (indexPath.row > self.tweets.count - 10 && ![self.nextTweetsTimer isValid]) {
+    if (indexPath.row > (self.tweets.count - 10) && ![self.nextTweetsTimer isValid]) {
 		// if we are close to the end of the list, we need to start loading more tweets
 		self.nextTweetsTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadNextTweets:) userInfo:nil repeats:NO];
 	}
 	
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
