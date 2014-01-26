@@ -19,19 +19,28 @@
 
 #pragma mark - Class Methods
 
++ (IDZTweet *)tweetFromJSON:(NSDictionary *)data
+{
+	return [[IDZTweet alloc] initFromJSON:data];
+}
+
 + (void)fetchLast:(int)limit withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-//	NSString *url = [NSString stringWithFormat:@"statuses/home_timeline.json?count=%d", limit];
 	[[[IDZTwitterClient instance] networkManager] GET:@"1.1/statuses/home_timeline.json"
 										   parameters:@{@"count": @(limit)}
 											  success:success
 											  failure:failure];
 }
 
-+ (IDZTweet *)tweetFromJSON:(NSDictionary *)data
++ (void)fetchNext:(int)limit until:(NSString *)maxId withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
-	return [[IDZTweet alloc] initFromJSON:data];
+	[[[IDZTwitterClient instance] networkManager] GET:@"1.1/statuses/home_timeline.json"
+										   parameters:@{@"count": @(limit),
+														@"max_id": maxId}
+											  success:success
+											  failure:failure];
 }
+
 
 #pragma mark - Instance Methods
 
@@ -39,13 +48,18 @@
 {
 	self = [super init];
 	if (self) {
-		NSLog(@"new tweet with: %@", data);
+//		NSLog(@"new tweet with: %@", data);
 
 		self.rawTweet = data;
 		self.author = [IDZUser userFromJSON:data[@"user"]];
 	}
 	
 	return self;
+}
+
+- (NSString *)tweetId
+{
+	return self.rawTweet[@"id_str"];
 }
 
 - (NSString *)text

@@ -15,6 +15,7 @@
 @interface IDZTweetsViewController ()
 
 @property (strong, nonatomic) NSMutableArray *tweets;
+@property (strong, nonatomic) NSTimer *nextTweetsTimer;
 
 - (IBAction)onLogoutButton:(id)sender;
 
@@ -61,9 +62,8 @@
 
 - (void)loadTweets
 {
-	[IDZTweet fetchLast:22
+	[IDZTweet fetchLast:25
 			withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
-//				NSLog(@"fetch success %@", responseObject);
 				self.tweets = [[NSMutableArray alloc] init];
 				
 				for (NSDictionary *data in responseObject) {
@@ -75,6 +75,30 @@
 			 andFailure:^(NSURLSessionDataTask *task, NSError *error) {
 				 NSLog(@"fetch failure %@", error);
 			 }];
+}
+
+- (void)loadNextTweets:(NSTimer *)timer
+{
+	IDZTweet *lastTweet = self.tweets[self.tweets.count - 1];
+	
+	if (lastTweet) {
+		[IDZTweet fetchNext:25
+					  until:lastTweet.tweetId
+				withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
+					NSLog(@"success more tweets: %@", responseObject);
+					for (NSDictionary *data in responseObject) {
+						[self.tweets addObject:[IDZTweet tweetFromJSON:data]];
+					}
+					
+					[self.tableView reloadData];
+				}
+				 andFailure:^(NSURLSessionDataTask *task, NSError *error) {
+					 NSLog(@"fetch failure %@", error);
+				 }];
+	}
+	else {
+		[self loadTweets];
+	}
 }
 
 #pragma mark - Table view data source
@@ -100,7 +124,12 @@
 	cell.messageText.text = tweet.text;
 	cell.userDisplayName.text = tweet.author.name;
 	cell.userTagName.text = tweet.author.screenName;
-    
+
+    if (indexPath.row > self.tweets.count - 10 && ![self.nextTweetsTimer isValid]) {
+		// if we are close to the end of the list, we need to start loading more tweets
+		self.nextTweetsTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadNextTweets:) userInfo:nil repeats:NO];
+	}
+	
     return cell;
 }
 

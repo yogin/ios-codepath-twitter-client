@@ -15,12 +15,17 @@
 
 #pragma mark - Class Methods
 
-+ (void)fetchLast:(int)limit withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 + (IDZTweet *)tweetFromJSON:(NSDictionary *)data;
+
++ (void)fetchLast:(int)limit withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
++ (void)fetchNext:(int)limit until:(NSString *)maxId withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 
 #pragma mark - Instance Methods
 
 - (IDZTweet *)initFromJSON:(NSDictionary *)data;
+- (NSString *)tweetId;
 - (NSString *)text;
 
 @end

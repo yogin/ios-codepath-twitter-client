@@ -24,7 +24,21 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
 
 + (IDZUser *)userFromJSON:(NSDictionary *)data
 {
-	return [[IDZUser alloc] initFromJSON:data];
+	static dispatch_once_t once;
+    static NSMutableDictionary *users;
+    
+    dispatch_once(&once, ^{
+        users = [[NSMutableDictionary alloc] init];
+    });
+
+	IDZUser *user = [users objectForKey:data[@"id"]];
+
+	if (!user) {
+		user = [[IDZUser alloc] initFromJSON:data];
+		[users setObject:user forKey:@(user.userId)];
+	}
+
+	return user;
 }
 
 #pragma mark - Instance Methods
