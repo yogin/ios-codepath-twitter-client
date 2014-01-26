@@ -49,7 +49,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self loadTweets];
+	[self setup];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,22 +58,38 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setup
+{
+	self.refreshControl = [[UIRefreshControl alloc] init];
+	[self.refreshControl addTarget:self
+							action:@selector(onRefresh:forState:)
+				  forControlEvents:UIControlEventValueChanged];
+
+	[self loadTweets];
+}
+
+- (void)onRefresh:(id)sender forState:(UIControlState)state
+{
+    [self loadTweets];
+}
+
 #pragma mark - Tweets
 
 - (void)loadTweets
 {
+	self.tweets = [[NSMutableArray alloc] init];
+	
 	[IDZTweet fetchLast:25
 			withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
-				self.tweets = [[NSMutableArray alloc] init];
-				
 				for (NSDictionary *data in responseObject) {
 					[self.tweets addObject:[IDZTweet tweetFromJSON:data]];
 				}
 				
 				[self.tableView reloadData];
+				[self.refreshControl endRefreshing];
 			}
 			 andFailure:^(NSURLSessionDataTask *task, NSError *error) {
-				 NSLog(@"fetch failure %@", error);
+				 NSLog(@"loadTweets failure %@", error);
 			 }];
 }
 
@@ -85,7 +101,6 @@
 		[IDZTweet fetchNext:25
 					  until:lastTweet.tweetId
 				withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
-					NSLog(@"success more tweets: %@", responseObject);
 					for (NSDictionary *data in responseObject) {
 						[self.tweets addObject:[IDZTweet tweetFromJSON:data]];
 					}
@@ -93,7 +108,7 @@
 					[self.tableView reloadData];
 				}
 				 andFailure:^(NSURLSessionDataTask *task, NSError *error) {
-					 NSLog(@"fetch failure %@", error);
+					 NSLog(@"loadNextTweets failure %@", error);
 				 }];
 	}
 	else {
