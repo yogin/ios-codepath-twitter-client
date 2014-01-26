@@ -13,6 +13,19 @@ extern NSString *const UserDidLogoutNotification;
 
 @interface IDZUser : NSObject
 
+@property (strong, nonatomic) NSString *description;
+@property int userId;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *profileUrl; // profile_image_url
+@property (strong, nonatomic) NSString *screenName;
+
+#pragma mark - Class Methods
+
 + (void)logout;
++ (IDZUser *)userFromJSON:(NSDictionary *)data;
+
+#pragma mark - Instance Methods
+
+- (IDZUser *)initFromJSON:(NSDictionary *)data;
 
 @end

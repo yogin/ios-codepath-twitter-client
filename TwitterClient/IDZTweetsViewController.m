@@ -9,14 +9,20 @@
 #import "IDZTweetsViewController.h"
 #import "IDZTwitterClient.h"
 #import "IDZUser.h"
+#import "IDZTweet.h"
+#import "IDZTweetCell.h"
 
 @interface IDZTweetsViewController ()
+
+@property (strong, nonatomic) NSMutableArray *tweets;
 
 - (IBAction)onLogoutButton:(id)sender;
 
 @end
 
 @implementation IDZTweetsViewController
+
+#pragma mark - Init
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,6 +42,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self loadTweets];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,26 +57,49 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Tweets
+
+- (void)loadTweets
+{
+	[IDZTweet fetchLast:22
+			withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
+//				NSLog(@"fetch success %@", responseObject);
+				self.tweets = [[NSMutableArray alloc] init];
+				
+				for (NSDictionary *data in responseObject) {
+					[self.tweets addObject:[IDZTweet tweetFromJSON:data]];
+				}
+				
+				[self.tableView reloadData];
+			}
+			 andFailure:^(NSURLSessionDataTask *task, NSError *error) {
+				 NSLog(@"fetch failure %@", error);
+			 }];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return self.tweets.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"tweetCell";
+    IDZTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+	IDZTweet *tweet = self.tweets[indexPath.row];
+	cell.messageText.text = tweet.text;
+	cell.userDisplayName.text = tweet.author.name;
+	cell.userTagName.text = tweet.author.screenName;
     
     return cell;
 }
@@ -118,6 +154,8 @@
 }
 
  */
+
+#pragma mark - IBActions
 
 - (IBAction)onLogoutButton:(id)sender
 {

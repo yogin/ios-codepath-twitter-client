@@ -25,6 +25,8 @@
 		15A2ABB21894D3670075B056 /* IDZLoggedOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2ABB11894D3670075B056 /* IDZLoggedOutViewController.m */; };
 		15A2ABB51894DE0E0075B056 /* IDZTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2ABB41894DE0E0075B056 /* IDZTweetsViewController.m */; };
 		15A2ABB91894E0D80075B056 /* IDZUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2ABB81894E0D80075B056 /* IDZUser.m */; };
+		15A2ABBC1894E78F0075B056 /* IDZTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2ABBB1894E78F0075B056 /* IDZTweet.m */; };
+		15A2ABC01894FB8F0075B056 /* IDZTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2ABBF1894FB8F0075B056 /* IDZTweetCell.m */; };
 		91CCC46B20304BA69D4F3D9D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F6BA6A38594B8A9972E88D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,10 @@
 		15A2ABB41894DE0E0075B056 /* IDZTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZTweetsViewController.m; sourceTree = "<group>"; };
 		15A2ABB71894E0D80075B056 /* IDZUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZUser.h; sourceTree = "<group>"; };
 		15A2ABB81894E0D80075B056 /* IDZUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZUser.m; sourceTree = "<group>"; };
+		15A2ABBA1894E78F0075B056 /* IDZTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZTweet.h; sourceTree = "<group>"; };
+		15A2ABBB1894E78F0075B056 /* IDZTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZTweet.m; sourceTree = "<group>"; };
+		15A2ABBE1894FB8F0075B056 /* IDZTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZTweetCell.h; sourceTree = "<group>"; };
+		15A2ABBF1894FB8F0075B056 /* IDZTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZTweetCell.m; sourceTree = "<group>"; };
 		A3AC4D5A77D14647A7337772 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B6F6BA6A38594B8A9972E88D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -129,6 +135,7 @@
 		15A2AB7A1894ABD10075B056 /* TwitterClient */ = {
 			isa = PBXGroup;
 			children = (
+				15A2ABBD1894FB710075B056 /* Views */,
 				15A2ABB61894E0BE0075B056 /* Models */,
 				15A2ABAF1894D34E0075B056 /* Controllers */,
 				15A2ABA31894B8E10075B056 /* API */,
@@ -196,8 +203,19 @@
 			children = (
 				15A2ABB71894E0D80075B056 /* IDZUser.h */,
 				15A2ABB81894E0D80075B056 /* IDZUser.m */,
+				15A2ABBA1894E78F0075B056 /* IDZTweet.h */,
+				15A2ABBB1894E78F0075B056 /* IDZTweet.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		15A2ABBD1894FB710075B056 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				15A2ABBE1894FB8F0075B056 /* IDZTweetCell.h */,
+				15A2ABBF1894FB8F0075B056 /* IDZTweetCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,6 +352,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A2ABAE1894CB4C0075B056 /* IDZTwitterClient.m in Sources */,
+				15A2ABC01894FB8F0075B056 /* IDZTweetCell.m in Sources */,
+				15A2ABBC1894E78F0075B056 /* IDZTweet.m in Sources */,
 				15A2ABB51894DE0E0075B056 /* IDZTweetsViewController.m in Sources */,
 				15A2AB851894ABD20075B056 /* IDZAppDelegate.m in Sources */,
 				15A2AB811894ABD20075B056 /* main.m in Sources */,
