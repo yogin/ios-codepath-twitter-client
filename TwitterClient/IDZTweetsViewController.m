@@ -138,7 +138,7 @@
 	IDZTweet *tweet = self.tweets[indexPath.row];
 	cell.messageText.text = tweet.text;
 	cell.userDisplayName.text = tweet.author.name;
-	cell.userTagName.text = tweet.author.screenName;
+	cell.userTagName.text = [NSString stringWithFormat:@"@%@", tweet.author.screenName];
 	cell.timeAgoLabel.text = tweet.elapsedCreatedAt;
 	[cell.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
 
