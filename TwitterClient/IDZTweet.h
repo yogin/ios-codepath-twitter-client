@@ -12,6 +12,9 @@
 @interface IDZTweet : NSObject
 
 @property (strong, nonatomic) IDZUser *author;
+@property (strong, nonatomic, readonly) NSDate *createdAt;
+@property (strong, nonatomic, readonly) NSString *text;
+
 
 #pragma mark - Class Methods
 
@@ -26,6 +29,7 @@
 
 - (IDZTweet *)initFromJSON:(NSDictionary *)data;
 - (NSString *)tweetId;
-- (NSString *)text;
+//- (NSString *)text;
+- (NSString *)elapsedCreatedAt;
 
 @end

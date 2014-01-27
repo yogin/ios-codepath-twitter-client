@@ -12,6 +12,8 @@
 @interface IDZTweet ()
 
 @property (strong, nonatomic) NSDictionary *rawTweet;
+@property (strong, nonatomic, readwrite) NSString *text;
+@property (strong, nonatomic, readwrite) NSDate *createdAt;
 
 @end
 
@@ -48,10 +50,16 @@
 {
 	self = [super init];
 	if (self) {
-//		NSLog(@"new tweet with: %@", data);
+		NSLog(@"new tweet with: %@", data);
 
 		self.rawTweet = data;
 		self.author = [IDZUser userFromJSON:data[@"user"]];
+		self.text = self.rawTweet[@"text"];
+		
+		// see http://www.unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
+		self.createdAt = [formatter dateFromString:self.rawTweet[@"created_at"]];
 	}
 	
 	return self;
@@ -62,9 +70,9 @@
 	return self.rawTweet[@"id_str"];
 }
 
-- (NSString *)text
+- (NSString *)elapsedCreatedAt
 {
-	return self.rawTweet[@"text"];
+	return @"";
 }
 
 @end
