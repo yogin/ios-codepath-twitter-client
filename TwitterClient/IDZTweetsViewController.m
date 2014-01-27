@@ -139,6 +139,7 @@
 	cell.messageText.text = tweet.text;
 	cell.userDisplayName.text = tweet.author.name;
 	cell.userTagName.text = tweet.author.screenName;
+	cell.timeAgoLabel.text = tweet.elapsedCreatedAt;
 	[cell.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
 
     if (indexPath.row > (self.tweets.count - 10) && ![self.nextTweetsTimer isValid]) {

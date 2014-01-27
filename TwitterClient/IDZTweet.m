@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSDictionary *rawTweet;
 @property (strong, nonatomic, readwrite) NSString *text;
 @property (strong, nonatomic, readwrite) NSDate *createdAt;
+@property NSString *_elapsedCreatedAt;
 
 @end
 
@@ -72,7 +73,32 @@
 
 - (NSString *)elapsedCreatedAt
 {
-	return @"";
+	if (!self._elapsedCreatedAt) {
+		NSTimeInterval elapsedTimeInterval = [self.createdAt timeIntervalSinceNow];
+		int elapsedSeconds = (int)(elapsedTimeInterval * -1);
+	
+		if (elapsedSeconds < 60) {
+			self._elapsedCreatedAt = @"now";
+		}
+		else if (elapsedSeconds < 3600) {
+			int minutes = elapsedSeconds / 60;
+			self._elapsedCreatedAt = [NSString stringWithFormat:@"%dm", minutes];
+		}
+		else if (elapsedSeconds < 86400) {
+			int hours = elapsedSeconds / 3600;
+			self._elapsedCreatedAt = [NSString stringWithFormat:@"%dh", hours];
+		}
+		else if (elapsedSeconds < 31536000) {
+			int days = elapsedSeconds / 86400;
+			self._elapsedCreatedAt = [NSString stringWithFormat:@"%dd", days];
+		}
+		else {
+			int years = elapsedSeconds / 31536000;
+			self._elapsedCreatedAt = [NSString stringWithFormat:@"%dyr", years];
+		}
+	}
+	
+	return self._elapsedCreatedAt;
 }
 
 @end
