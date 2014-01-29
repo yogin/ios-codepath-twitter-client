@@ -51,7 +51,7 @@
 {
 	self = [super init];
 	if (self) {
-		NSLog(@"new tweet with: %@", data);
+//		NSLog(@"new tweet with: %@", data);
 
 		self.rawTweet = data;
 		self.author = [IDZUser userFromJSON:data[@"user"]];

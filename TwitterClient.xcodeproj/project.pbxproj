@@ -27,6 +27,7 @@
 		15A2ABB91894E0D80075B056 /* IDZUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2ABB81894E0D80075B056 /* IDZUser.m */; };
 		15A2ABBC1894E78F0075B056 /* IDZTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2ABBB1894E78F0075B056 /* IDZTweet.m */; };
 		15A2ABC01894FB8F0075B056 /* IDZTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2ABBF1894FB8F0075B056 /* IDZTweetCell.m */; };
+		15CDB0DD1898B8FA00CCF90F /* IDZTweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CDB0DC1898B8FA00CCF90F /* IDZTweetDetailViewController.m */; };
 		91CCC46B20304BA69D4F3D9D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F6BA6A38594B8A9972E88D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		15A2ABBB1894E78F0075B056 /* IDZTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZTweet.m; sourceTree = "<group>"; };
 		15A2ABBE1894FB8F0075B056 /* IDZTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZTweetCell.h; sourceTree = "<group>"; };
 		15A2ABBF1894FB8F0075B056 /* IDZTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZTweetCell.m; sourceTree = "<group>"; };
+		15CDB0DB1898B8FA00CCF90F /* IDZTweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZTweetDetailViewController.h; sourceTree = "<group>"; };
+		15CDB0DC1898B8FA00CCF90F /* IDZTweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZTweetDetailViewController.m; sourceTree = "<group>"; };
 		A3AC4D5A77D14647A7337772 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B6F6BA6A38594B8A9972E88D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -194,6 +197,8 @@
 				15A2ABB11894D3670075B056 /* IDZLoggedOutViewController.m */,
 				15A2ABB31894DE0E0075B056 /* IDZTweetsViewController.h */,
 				15A2ABB41894DE0E0075B056 /* IDZTweetsViewController.m */,
+				15CDB0DB1898B8FA00CCF90F /* IDZTweetDetailViewController.h */,
+				15CDB0DC1898B8FA00CCF90F /* IDZTweetDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				15A2ABAE1894CB4C0075B056 /* IDZTwitterClient.m in Sources */,
 				15A2ABC01894FB8F0075B056 /* IDZTweetCell.m in Sources */,
 				15A2ABBC1894E78F0075B056 /* IDZTweet.m in Sources */,
+				15CDB0DD1898B8FA00CCF90F /* IDZTweetDetailViewController.m in Sources */,
 				15A2ABB51894DE0E0075B056 /* IDZTweetsViewController.m in Sources */,
 				15A2AB851894ABD20075B056 /* IDZAppDelegate.m in Sources */,
 				15A2AB811894ABD20075B056 /* main.m in Sources */,

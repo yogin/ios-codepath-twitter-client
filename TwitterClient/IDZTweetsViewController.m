@@ -74,6 +74,11 @@
     [self loadTweets];
 }
 
+- (BOOL)isPortraitOrientation
+{
+	return [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait;
+}
+
 #pragma mark - Tweets
 
 - (void)loadTweets
@@ -148,6 +153,35 @@
 	}
 	
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	IDZTweet *item = self.tweets[indexPath.row];
+	UITextView *textView = [[UITextView alloc] init];
+	
+	CGFloat textViewHeight = [self heightForTextView:textView withItem:item];
+	// TODO calculate heights of other elements
+
+	return textViewHeight;
+}
+
+- (CGFloat)heightForTextView:(UITextView *)textView withItem:(IDZTweet *)item
+{
+	if (item) {
+		[textView setAttributedText:[[NSAttributedString alloc] initWithString:item.text]];
+	}
+	
+	CGRect screenRect = [[UIScreen mainScreen] bounds];
+	CGFloat width = [self isPortraitOrientation] ? screenRect.size.width : screenRect.size.height;
+	width -= 75;
+	
+	CGRect textRect = [textView.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+												  options:NSStringDrawingUsesLineFragmentOrigin
+											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}
+												  context:nil];
+	
+	return textRect.size.height + 20;
 }
 
 /*
