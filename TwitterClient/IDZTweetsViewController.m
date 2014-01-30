@@ -174,14 +174,15 @@
 	
 	CGRect screenRect = [[UIScreen mainScreen] bounds];
 	CGFloat width = [self isPortraitOrientation] ? screenRect.size.width : screenRect.size.height;
-	width -= 75;
+	width -= 84;
 	
+	textView.dataDetectorTypes = UIDataDetectorTypeLink;
 	CGRect textRect = [textView.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
 												  options:NSStringDrawingUsesLineFragmentOrigin
-											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}
+											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
 												  context:nil];
 	
-	return textRect.size.height + 20;
+	return textRect.size.height + 70;
 }
 
 /*
