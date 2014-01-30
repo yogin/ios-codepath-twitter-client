@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
 @property (weak, nonatomic) IBOutlet UILabel *userTagName;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *messageText;
+@property (weak, nonatomic) IBOutlet UITextView *messageText;
 
 @end
