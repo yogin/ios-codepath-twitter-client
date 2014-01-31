@@ -11,6 +11,7 @@
 
 @interface IDZTweet : NSObject
 
+@property (strong, nonatomic) IDZUser *retweeter;
 @property (strong, nonatomic) IDZUser *author;
 @property (strong, nonatomic, readonly) NSDate *createdAt;
 @property (strong, nonatomic, readonly) NSString *text;
@@ -29,7 +30,6 @@
 
 - (IDZTweet *)initFromJSON:(NSDictionary *)data;
 - (NSString *)tweetId;
-//- (NSString *)text;
 - (NSString *)elapsedCreatedAt;
 
 @end

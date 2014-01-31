@@ -51,16 +51,21 @@
 {
 	self = [super init];
 	if (self) {
-//		NSLog(@"new tweet with: %@", data);
-
+		NSLog(@"new tweet with: %@", data);
 		self.rawTweet = data;
-		self.author = [IDZUser userFromJSON:data[@"user"]];
-		self.text = self.rawTweet[@"text"];
 		
-		// see http://www.unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns
-		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
-		self.createdAt = [formatter dateFromString:self.rawTweet[@"created_at"]];
+		NSDictionary *retweet = self.rawTweet[@"retweeted_status"];
+		if (retweet) {
+			self.retweeter = [IDZUser userFromJSON:data[@"user"]];
+			self.author = [IDZUser userFromJSON:retweet[@"user"]];
+			self.text = retweet[@"text"];
+			self.createdAt = [self dateFromString:retweet[@"created_at"]];
+		}
+		else {
+			self.author = [IDZUser userFromJSON:data[@"user"]];
+			self.text = self.rawTweet[@"text"];
+			self.createdAt = [self dateFromString:self.rawTweet[@"created_at"]];
+		}
 	}
 	
 	return self;
@@ -99,6 +104,14 @@
 	}
 	
 	return self._elapsedCreatedAt;
+}
+
+- (NSDate *)dateFromString:(NSString *)string
+{
+	// see http://www.unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
+	return [formatter dateFromString:string];
 }
 
 @end

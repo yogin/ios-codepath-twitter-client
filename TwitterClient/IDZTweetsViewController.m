@@ -147,6 +147,21 @@
 	cell.timeAgoLabel.text = tweet.elapsedCreatedAt;
 	[cell.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
 
+	CGFloat overheadHeight = 0;
+	
+	if (tweet.retweeter) {
+		overheadHeight = 30;
+		cell.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name];
+	}
+	else {
+		cell.overheadView.hidden = true;
+
+	}
+
+	CGRect viewFrame = cell.overheadView.frame;
+	viewFrame.size.height = overheadHeight;
+	cell.overheadView.frame = viewFrame;
+
     if (indexPath.row > (self.tweets.count - 10) && ![self.nextTweetsTimer isValid]) {
 		// if we are close to the end of the list, we need to start loading more tweets
 		self.nextTweetsTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadNextTweets:) userInfo:nil repeats:NO];
@@ -182,7 +197,7 @@
 											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
 												  context:nil];
 	
-	return textRect.size.height + 70;
+	return textRect.size.height + 105; // 70
 }
 
 /*

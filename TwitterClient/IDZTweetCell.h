@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userTagName;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 @property (weak, nonatomic) IBOutlet UITextView *messageText;
+@property (weak, nonatomic) IBOutlet UILabel *overheadTitle;
+@property (weak, nonatomic) IBOutlet UIView *overheadView;
 
 @end
