@@ -89,10 +89,10 @@
 - (CGFloat)paddingForCell
 {
 	if ([self isRetweet]) {
-		return 105;
+		return 95;
 	}
 
-	return 95;
+	return 85;
 }
 
 - (NSString *)tweetId

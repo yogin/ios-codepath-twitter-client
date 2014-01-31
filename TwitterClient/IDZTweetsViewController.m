@@ -191,7 +191,7 @@
 	
 	CGRect screenRect = [[UIScreen mainScreen] bounds];
 	CGFloat width = [self isPortraitOrientation] ? screenRect.size.width : screenRect.size.height;
-	width -= 84;
+	width -= 76;//84;
 	
 	textView.dataDetectorTypes = UIDataDetectorTypeLink;
 	CGRect textRect = [textView.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)

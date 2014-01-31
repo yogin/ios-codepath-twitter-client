@@ -13,11 +13,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SimpleCell" rowHeight="169" id="86r-RK-qk7" customClass="IDZTweetCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="169"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SimpleCell" rowHeight="134" id="86r-RK-qk7" customClass="IDZTweetCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="134"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="86r-RK-qk7" id="miC-xD-OQ5">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eJV-wG-4kf">
@@ -52,7 +52,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" editable="NO" text="Gravity's Alfonso Cuaron wins top feature film honor tonight from the #DGAAwards. Is the Oscar next? http://t.co/kUhSkRnQlF" translatesAutoresizingMaskIntoConstraints="NO" id="XLM-YB-yKM">
-                                            <rect key="frame" x="65" y="26" width="236" height="101"/>
+                                            <rect key="frame" x="65" y="25" width="243" height="83"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -60,7 +60,7 @@
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                         </textView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yx-1D-MKC">
-                                            <rect key="frame" x="65" y="135" width="243" height="25"/>
+                                            <rect key="frame" x="65" y="108" width="243" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcR-mf-F2X">
@@ -112,12 +112,13 @@
                                     <constraints>
                                         <constraint firstItem="1yx-1D-MKC" firstAttribute="leading" secondItem="miC-xD-OQ5" secondAttribute="leading" constant="65" id="3Sv-H0-xb2"/>
                                         <constraint firstItem="XLM-YB-yKM" firstAttribute="leading" secondItem="miC-xD-OQ5" secondAttribute="leading" constant="65" id="60r-tw-IS5"/>
-                                        <constraint firstAttribute="bottom" secondItem="1yx-1D-MKC" secondAttribute="bottom" constant="8" id="8c0-LP-sQO"/>
+                                        <constraint firstAttribute="bottom" secondItem="1yx-1D-MKC" secondAttribute="bottom" id="8c0-LP-sQO"/>
                                         <constraint firstItem="IzC-Bu-RoI" firstAttribute="leading" secondItem="eJV-wG-4kf" secondAttribute="trailing" constant="8" id="9Fa-ak-8YQ"/>
                                         <constraint firstItem="QRN-xO-ezP" firstAttribute="baseline" secondItem="U6d-JC-wu2" secondAttribute="baseline" id="C0D-qv-tPp"/>
                                         <constraint firstItem="eJV-wG-4kf" firstAttribute="leading" secondItem="miC-xD-OQ5" secondAttribute="leading" constant="12" id="CWP-es-32a"/>
                                         <constraint firstAttribute="trailing" secondItem="1yx-1D-MKC" secondAttribute="trailing" constant="12" id="EGF-km-cYM"/>
                                         <constraint firstItem="QRN-xO-ezP" firstAttribute="baseline" secondItem="IzC-Bu-RoI" secondAttribute="baseline" id="Eia-6Y-5QE"/>
+                                        <constraint firstAttribute="bottom" secondItem="XLM-YB-yKM" secondAttribute="bottom" constant="25" id="K1t-5l-dhl"/>
                                         <constraint firstItem="U6d-JC-wu2" firstAttribute="leading" secondItem="QRN-xO-ezP" secondAttribute="trailing" constant="8" id="Mim-sY-H24"/>
                                         <constraint firstItem="QRN-xO-ezP" firstAttribute="top" secondItem="miC-xD-OQ5" secondAttribute="top" constant="10" id="RdB-hu-GWW"/>
                                         <constraint firstItem="QRN-xO-ezP" firstAttribute="baseline" secondItem="U6d-JC-wu2" secondAttribute="baseline" id="SN7-SE-mkn"/>
@@ -125,11 +126,10 @@
                                         <constraint firstItem="U6d-JC-wu2" firstAttribute="top" secondItem="miC-xD-OQ5" secondAttribute="top" constant="10" id="T3R-0d-osv"/>
                                         <constraint firstItem="QRN-xO-ezP" firstAttribute="leading" secondItem="IzC-Bu-RoI" secondAttribute="trailing" constant="2" id="WeQ-6H-sXk"/>
                                         <constraint firstItem="QRN-xO-ezP" firstAttribute="baseline" secondItem="IzC-Bu-RoI" secondAttribute="baseline" id="WzL-nG-74p"/>
-                                        <constraint firstAttribute="trailing" secondItem="XLM-YB-yKM" secondAttribute="trailing" constant="19" id="YsA-6L-QsL"/>
-                                        <constraint firstItem="1yx-1D-MKC" firstAttribute="top" secondItem="XLM-YB-yKM" secondAttribute="bottom" constant="8" id="dac-6Z-wyN"/>
+                                        <constraint firstAttribute="trailing" secondItem="XLM-YB-yKM" secondAttribute="trailing" constant="12" id="YsA-6L-QsL"/>
                                         <constraint firstItem="IzC-Bu-RoI" firstAttribute="top" secondItem="miC-xD-OQ5" secondAttribute="top" constant="8" id="ebZ-So-aBf"/>
                                         <constraint firstItem="eJV-wG-4kf" firstAttribute="top" secondItem="miC-xD-OQ5" secondAttribute="top" constant="8" id="mfs-0W-gAG"/>
-                                        <constraint firstItem="XLM-YB-yKM" firstAttribute="top" secondItem="miC-xD-OQ5" secondAttribute="top" constant="26" id="xUS-69-8YF"/>
+                                        <constraint firstItem="XLM-YB-yKM" firstAttribute="top" secondItem="miC-xD-OQ5" secondAttribute="top" constant="25" id="xUS-69-8YF"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -141,11 +141,11 @@
                                     <segue destination="OFX-hw-W2P" kind="push" id="7t4-z2-inz"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RetweetCell" rowHeight="182" id="oTt-Vg-12U" customClass="IDZRetweetCell">
-                                <rect key="frame" x="0.0" y="255" width="320" height="182"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RetweetCell" rowHeight="148" id="oTt-Vg-12U" customClass="IDZRetweetCell">
+                                <rect key="frame" x="0.0" y="220" width="320" height="148"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oTt-Vg-12U" id="reO-2k-4Ry">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="181"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kw8-Q8-Xnu">
@@ -180,7 +180,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" editable="NO" text="Gravity's Alfonso Cuaron wins top feature film honor tonight from the #DGAAwards. Is the Oscar next? http://t.co/kUhSkRnQlF" translatesAutoresizingMaskIntoConstraints="NO" id="zAS-Ns-8zg">
-                                            <rect key="frame" x="64" y="38" width="236" height="85"/>
+                                            <rect key="frame" x="64" y="38" width="243" height="84"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -188,7 +188,7 @@
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                         </textView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xG8-xp-XM5">
-                                            <rect key="frame" x="64" y="147" width="243" height="25"/>
+                                            <rect key="frame" x="64" y="122" width="243" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="342-dx-xlm">
@@ -259,7 +259,6 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="xG8-xp-XM5" firstAttribute="top" secondItem="zAS-Ns-8zg" secondAttribute="bottom" constant="24" id="4Ca-X8-7pZ"/>
                                         <constraint firstItem="qnj-Lv-0TF" firstAttribute="baseline" secondItem="Ahe-Ma-ccC" secondAttribute="baseline" id="CLx-qG-L6t"/>
                                         <constraint firstItem="zAS-Ns-8zg" firstAttribute="leading" secondItem="reO-2k-4Ry" secondAttribute="leading" constant="64" id="E4T-2n-0zu"/>
                                         <constraint firstItem="qnj-Lv-0TF" firstAttribute="baseline" secondItem="Ahe-Ma-ccC" secondAttribute="baseline" id="G4k-B5-ZJF"/>
@@ -270,6 +269,7 @@
                                         <constraint firstItem="Ahe-Ma-ccC" firstAttribute="top" secondItem="WJs-hQ-aeh" secondAttribute="bottom" id="PhO-OT-5jv"/>
                                         <constraint firstItem="qnj-Lv-0TF" firstAttribute="leading" secondItem="Ahe-Ma-ccC" secondAttribute="trailing" constant="2" id="S4T-y9-N2x"/>
                                         <constraint firstItem="qnj-Lv-0TF" firstAttribute="top" secondItem="WJs-hQ-aeh" secondAttribute="bottom" constant="2" id="UXI-7E-KrE"/>
+                                        <constraint firstAttribute="bottom" secondItem="zAS-Ns-8zg" secondAttribute="bottom" constant="25" id="VSV-o4-kzc"/>
                                         <constraint firstItem="Kw8-Q8-Xnu" firstAttribute="top" secondItem="WJs-hQ-aeh" secondAttribute="bottom" id="Vs2-o6-acY"/>
                                         <constraint firstItem="Kw8-Q8-Xnu" firstAttribute="leading" secondItem="reO-2k-4Ry" secondAttribute="leading" constant="11" id="WC3-Ln-458"/>
                                         <constraint firstAttribute="trailing" secondItem="6ME-1r-nKd" secondAttribute="trailing" constant="13" id="YW1-M9-Yrx"/>
@@ -277,9 +277,9 @@
                                         <constraint firstItem="qnj-Lv-0TF" firstAttribute="baseline" secondItem="6ME-1r-nKd" secondAttribute="baseline" id="ggS-eF-p6p"/>
                                         <constraint firstItem="6ME-1r-nKd" firstAttribute="leading" secondItem="qnj-Lv-0TF" secondAttribute="trailing" constant="8" id="ich-xY-dZ3"/>
                                         <constraint firstAttribute="trailing" secondItem="xG8-xp-XM5" secondAttribute="trailing" constant="13" id="oUK-Er-kRe"/>
-                                        <constraint firstAttribute="bottom" secondItem="xG8-xp-XM5" secondAttribute="bottom" constant="9" id="oaf-xH-rYA"/>
+                                        <constraint firstAttribute="bottom" secondItem="xG8-xp-XM5" secondAttribute="bottom" id="oaf-xH-rYA"/>
                                         <constraint firstItem="WJs-hQ-aeh" firstAttribute="top" secondItem="reO-2k-4Ry" secondAttribute="top" id="uot-98-dqj"/>
-                                        <constraint firstAttribute="trailing" secondItem="zAS-Ns-8zg" secondAttribute="trailing" constant="20" id="vv1-bV-Ayz"/>
+                                        <constraint firstAttribute="trailing" secondItem="zAS-Ns-8zg" secondAttribute="trailing" constant="13" id="vv1-bV-Ayz"/>
                                         <constraint firstAttribute="trailing" secondItem="WJs-hQ-aeh" secondAttribute="trailing" constant="8" id="xKB-94-yoW"/>
                                         <constraint firstItem="zAS-Ns-8zg" firstAttribute="top" secondItem="WJs-hQ-aeh" secondAttribute="bottom" constant="18" id="yzt-d1-2dx"/>
                                     </constraints>
