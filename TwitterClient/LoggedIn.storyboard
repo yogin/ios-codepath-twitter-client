@@ -179,12 +179,36 @@
                                 <action selector="onLogoutButton:" destination="olf-no-ZUG" id="xHb-EY-MHO"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="xUo-s6-VTm">
+                            <connections>
+                                <segue destination="Bhj-7W-Ihu" kind="push" id="jxx-cZ-ZAT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGJ-3U-MOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="786" y="64"/>
+        </scene>
+        <!--New Tweet View Controller-->
+        <scene sceneID="WHS-pD-jLt">
+            <objects>
+                <viewController id="Bhj-7W-Ihu" customClass="IDZNewTweetViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bWu-QB-lJf"/>
+                        <viewControllerLayoutGuide type="bottom" id="42X-Z8-0i2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="15l-LD-VPb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YR6-ND-0z8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5K3-by-MHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1327" y="345"/>
         </scene>
         <!--Tweet Detail View Controller - Tweet-->
         <scene sceneID="pxM-QR-n86">
@@ -240,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4B-hP-Hub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="64"/>
+            <point key="canvasLocation" x="1327" y="-363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mPi-Nl-SAD">

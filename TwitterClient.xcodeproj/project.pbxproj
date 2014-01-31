@@ -32,6 +32,7 @@
 		15CDB0E3189A418900CCF90F /* 28-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CDB0E0189A418900CCF90F /* 28-star.png */; };
 		15CDB0E4189A418900CCF90F /* 187-pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CDB0E1189A418900CCF90F /* 187-pencil.png */; };
 		15CDB0E6189A450F00CCF90F /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CDB0E5189A450F00CCF90F /* 01-refresh.png */; };
+		15E78FEB189BA74E00DB9C3B /* IDZNewTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E78FEA189BA74E00DB9C3B /* IDZNewTweetViewController.m */; };
 		91CCC46B20304BA69D4F3D9D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F6BA6A38594B8A9972E88D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,8 @@
 		15CDB0E0189A418900CCF90F /* 28-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "28-star.png"; sourceTree = "<group>"; };
 		15CDB0E1189A418900CCF90F /* 187-pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "187-pencil.png"; sourceTree = "<group>"; };
 		15CDB0E5189A450F00CCF90F /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
+		15E78FE9189BA74E00DB9C3B /* IDZNewTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZNewTweetViewController.h; sourceTree = "<group>"; };
+		15E78FEA189BA74E00DB9C3B /* IDZNewTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZNewTweetViewController.m; sourceTree = "<group>"; };
 		A3AC4D5A77D14647A7337772 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B6F6BA6A38594B8A9972E88D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -208,6 +211,8 @@
 				15A2ABB41894DE0E0075B056 /* IDZTweetsViewController.m */,
 				15CDB0DB1898B8FA00CCF90F /* IDZTweetDetailViewController.h */,
 				15CDB0DC1898B8FA00CCF90F /* IDZTweetDetailViewController.m */,
+				15E78FE9189BA74E00DB9C3B /* IDZNewTweetViewController.h */,
+				15E78FEA189BA74E00DB9C3B /* IDZNewTweetViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				15A2ABBC1894E78F0075B056 /* IDZTweet.m in Sources */,
 				15CDB0DD1898B8FA00CCF90F /* IDZTweetDetailViewController.m in Sources */,
 				15A2ABB51894DE0E0075B056 /* IDZTweetsViewController.m in Sources */,
+				15E78FEB189BA74E00DB9C3B /* IDZNewTweetViewController.m in Sources */,
 				15A2AB851894ABD20075B056 /* IDZAppDelegate.m in Sources */,
 				15A2AB811894ABD20075B056 /* main.m in Sources */,
 				15A2ABB91894E0D80075B056 /* IDZUser.m in Sources */,
