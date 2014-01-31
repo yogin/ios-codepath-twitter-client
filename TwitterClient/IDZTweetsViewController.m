@@ -154,13 +154,22 @@
 		cell.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name];
 	}
 	else {
-		cell.overheadView.hidden = true;
+		cell.overheadTitle.text = @"";
+//		cell.overheadView.hidden = true;
 
 	}
+//
+//	CGRect viewFrame = cell.overheadTitle.frame;
+//	viewFrame.size.height = overheadHeight;
+//	cell.overheadTitle.frame = viewFrame;
+//	[cell.overheadTitle updateConstraintsIfNeeded];
 
 	CGRect viewFrame = cell.overheadView.frame;
 	viewFrame.size.height = overheadHeight;
 	cell.overheadView.frame = viewFrame;
+	cell.overheadView.backgroundColor = [UIColor blackColor];
+	[cell.contentView setNeedsDisplay];
+
 
     if (indexPath.row > (self.tweets.count - 10) && ![self.nextTweetsTimer isValid]) {
 		// if we are close to the end of the list, we need to start loading more tweets
