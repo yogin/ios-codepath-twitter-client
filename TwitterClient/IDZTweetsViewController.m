@@ -11,6 +11,7 @@
 #import "IDZUser.h"
 #import "IDZTweet.h"
 #import "IDZTweetCell.h"
+#import "IDZRetweetCell.h"
 #import <UIImageView+AFNetworking.h>
 
 @interface IDZTweetsViewController ()
@@ -137,37 +138,38 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"tweetCell";
-    IDZTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
 	IDZTweet *tweet = self.tweets[indexPath.row];
-	cell.messageText.text = tweet.text;
-	cell.userDisplayName.text = tweet.author.name;
-	cell.userTagName.text = [NSString stringWithFormat:@"@%@", tweet.author.screenName];
-	cell.timeAgoLabel.text = tweet.elapsedCreatedAt;
-	[cell.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
-
-	CGFloat overheadHeight = 0;
-	
-	if (tweet.retweeter) {
-		overheadHeight = 30;
-		cell.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name];
-	}
-	else {
-		cell.overheadView.hidden = true;
-
-	}
-
-	CGRect viewFrame = cell.overheadView.frame;
-	viewFrame.size.height = overheadHeight;
-	cell.overheadView.frame = viewFrame;
 
     if (indexPath.row > (self.tweets.count - 10) && ![self.nextTweetsTimer isValid]) {
 		// if we are close to the end of the list, we need to start loading more tweets
-		self.nextTweetsTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadNextTweets:) userInfo:nil repeats:NO];
+		self.nextTweetsTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadNextTweets:) userInfo:nil repeats:NO];
 	}
 	
-    return cell;
+	// TODO figure out a way to keep it DRY!
+
+	if (tweet.isRetweet) {
+		IDZRetweetCell *cell = (IDZRetweetCell*)(IDZRetweetCell *)[tableView dequeueReusableCellWithIdentifier:tweet.cellIdentifier forIndexPath:indexPath];
+		
+		cell.messageText.text = tweet.text;
+		cell.userDisplayName.text = tweet.author.name;
+		cell.userTagName.text = [NSString stringWithFormat:@"@%@", tweet.author.screenName];
+		cell.timeAgoLabel.text = tweet.elapsedCreatedAt;
+		[cell.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
+		cell.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name];
+		
+		return cell;
+	}
+	else {
+		IDZTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:tweet.cellIdentifier forIndexPath:indexPath];
+		
+		cell.messageText.text = tweet.text;
+		cell.userDisplayName.text = tweet.author.name;
+		cell.userTagName.text = [NSString stringWithFormat:@"@%@", tweet.author.screenName];
+		cell.timeAgoLabel.text = tweet.elapsedCreatedAt;
+		[cell.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
+		
+		return cell;
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -197,7 +199,7 @@
 											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
 												  context:nil];
 	
-	return textRect.size.height + 105; // 70
+	return textRect.size.height + item.paddingForCell;
 }
 
 /*

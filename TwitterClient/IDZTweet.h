@@ -32,4 +32,8 @@
 - (NSString *)tweetId;
 - (NSString *)elapsedCreatedAt;
 
+- (BOOL)isRetweet;
+- (NSString *)cellIdentifier;
+- (CGFloat)paddingForCell;
+
 @end
