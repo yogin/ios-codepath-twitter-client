@@ -139,6 +139,7 @@
 {
     static NSString *CellIdentifier = @"tweetCell";
     IDZTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
     
 	IDZTweet *tweet = self.tweets[indexPath.row];
 	cell.messageText.text = tweet.text;
@@ -152,10 +153,6 @@
 	if (tweet.retweeter) {
 		overheadHeight = 30;
 		cell.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name];
-	}
-	else {
-		cell.overheadView.hidden = true;
-
 	}
 
 	CGRect viewFrame = cell.overheadView.frame;
