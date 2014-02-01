@@ -202,9 +202,64 @@
                     <view key="view" contentMode="scaleToFill" id="15l-LD-VPb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RSA-bp-qw8">
+                                <rect key="frame" x="12" y="78" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="FOL-Qd-OzT"/>
+                                    <constraint firstAttribute="height" constant="45" id="c7X-jc-zVt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anthony Powles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTa-Kb-ucU">
+                                <rect key="frame" x="65" y="78" width="235" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="p9u-zl-0OE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@anthonypowles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R98-1K-dud">
+                                <rect key="frame" x="65" y="96" width="235" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="wiG-f1-SMg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tb-2d-3HZ">
+                                <rect key="frame" x="20" y="131" width="280" height="417"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="R98-1K-dud" secondAttribute="trailing" constant="20" id="00c-Lr-EAs"/>
+                            <constraint firstItem="RSA-bp-qw8" firstAttribute="top" secondItem="bWu-QB-lJf" secondAttribute="bottom" constant="14" id="1ak-sX-Wra"/>
+                            <constraint firstItem="5tb-2d-3HZ" firstAttribute="top" secondItem="bWu-QB-lJf" secondAttribute="bottom" constant="67" id="Jsw-DH-QFu"/>
+                            <constraint firstAttribute="trailing" secondItem="5tb-2d-3HZ" secondAttribute="trailing" constant="20" id="W4W-Lx-Y97"/>
+                            <constraint firstItem="RSA-bp-qw8" firstAttribute="leading" secondItem="15l-LD-VPb" secondAttribute="leading" constant="12" id="XXb-IY-opP"/>
+                            <constraint firstItem="CTa-Kb-ucU" firstAttribute="top" secondItem="bWu-QB-lJf" secondAttribute="bottom" constant="14" id="ZiG-Ys-AHh"/>
+                            <constraint firstItem="R98-1K-dud" firstAttribute="leading" secondItem="15l-LD-VPb" secondAttribute="leading" constant="65" id="e2s-vY-fRS"/>
+                            <constraint firstItem="42X-Z8-0i2" firstAttribute="top" secondItem="5tb-2d-3HZ" secondAttribute="bottom" constant="20" id="hfK-Vc-wxI"/>
+                            <constraint firstAttribute="trailing" secondItem="CTa-Kb-ucU" secondAttribute="trailing" constant="20" id="hxo-NU-4vp"/>
+                            <constraint firstItem="CTa-Kb-ucU" firstAttribute="leading" secondItem="15l-LD-VPb" secondAttribute="leading" constant="65" id="j7w-Nh-b0Y"/>
+                            <constraint firstItem="R98-1K-dud" firstAttribute="top" secondItem="CTa-Kb-ucU" secondAttribute="bottom" constant="-3" id="wsM-vU-xBt"/>
+                            <constraint firstItem="5tb-2d-3HZ" firstAttribute="leading" secondItem="15l-LD-VPb" secondAttribute="leading" constant="20" id="ycQ-Sa-sX5"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YR6-ND-0z8"/>
+                    <navigationItem key="navigationItem" id="YR6-ND-0z8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eym-0X-duh"/>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="2am-JV-O61"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5K3-by-MHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
