@@ -23,6 +23,7 @@ extern NSString *const UserDidLogoutNotification;
 
 + (void)logout;
 + (IDZUser *)userFromJSON:(NSDictionary *)data;
++ (IDZUser *)currentUser;
 
 #pragma mark - Instance Methods
 

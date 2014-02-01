@@ -25,10 +25,12 @@
 
 + (void)fetchNext:(int)limit until:(NSString *)maxId withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
++ (IDZTweet *)updateStatus:(NSString *)status withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 #pragma mark - Instance Methods
 
 - (IDZTweet *)initFromJSON:(NSDictionary *)data;
+- (IDZTweet *)initWithStatus:(NSString *)status author:(IDZUser *)author;
 - (NSString *)tweetId;
 - (NSString *)elapsedCreatedAt;
 

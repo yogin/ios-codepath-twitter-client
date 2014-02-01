@@ -41,20 +41,48 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
 	return user;
 }
 
++ (IDZUser *)currentUser
+{
+	static dispatch_once_t once;
+	static IDZUser *user;
+
+	dispatch_once(&once, ^{
+        user = [[IDZUser alloc] init];
+    });
+
+	if (!user.userId) {
+		[[[IDZTwitterClient instance] networkManager] GET:@"1.1/account/verify_credentials.json"
+											   parameters:nil
+												  success:^(NSURLSessionDataTask *task, id responseObject) {
+													  [user updateFromJSON:responseObject];
+												  }
+												  failure:^(NSURLSessionDataTask *task, NSError *error) {
+													  // TODO
+												  }];
+	}
+
+	return user;
+}
+
 #pragma mark - Instance Methods
 
 - (IDZUser *)initFromJSON:(NSDictionary *)data
 {
 	self = [super init];
 	if (self) {
-		self.description = data[@"description"];
-		self.userId = (int)data[@"id"];
-		self.name = data[@"name"];
-		self.screenName = data[@"screen_name"];
-		self.profileUrl = data[@"profile_image_url"];
+		[self updateFromJSON:data];
 	}
 	
 	return self;
+}
+
+- (void)updateFromJSON:(NSDictionary *)data
+{
+	self.description = data[@"description"];
+	self.userId = (int)data[@"id"];
+	self.name = data[@"name"];
+	self.screenName = data[@"screen_name"];
+	self.profileUrl = data[@"profile_image_url"];
 }
 
 @end

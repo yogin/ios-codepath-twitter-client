@@ -6,12 +6,14 @@
 //  Copyright (c) 2014 Anthony Powles. All rights reserved.
 //
 
+#import <UIImageView+AFNetworking.h>
+
 #import "IDZTweetsViewController.h"
 #import "IDZTwitterClient.h"
 #import "IDZUser.h"
 #import "IDZTweet.h"
 #import "IDZTweetCell.h"
-#import <UIImageView+AFNetworking.h>
+#import "IDZNewTweetViewController.h"
 
 @interface IDZTweetsViewController ()
 
@@ -197,7 +199,7 @@
 	return textRect.size.height + 105; // 70
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -205,9 +207,11 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+//	if ([[segue identifier] isEqualToString:@"NewTweetSegue"]) {
+//		IDZNewTweetViewController *newTweetController = [sender destinationViewController];
+//		newTweetController.author = nil;
+//	}
 }
-
- */
 
 #pragma mark - IBActions
 

@@ -8,6 +8,7 @@
 
 #import "IDZTwitterClient.h"
 #import <BDBOAuth1Manager/NSDictionary+BDBOAuth1Manager.h>
+#import "IDZUser.h"
 
 #define TWITTER_BASE_URL [NSURL URLWithString:@"https://api.twitter.com/"]
 
@@ -103,6 +104,7 @@
 													  success:^(BDBOAuthToken *accessToken) {
 														  NSLog(@"access token %@", accessToken);
 														  [self.networkManager.requestSerializer saveAccessToken:accessToken];
+														  [IDZUser currentUser];
 
 														  if (completion) {
 															  dispatch_async(dispatch_get_main_queue(), ^{
@@ -114,7 +116,7 @@
 														  NSLog(@"Error: %@", error.localizedDescription);
 														  dispatch_async(dispatch_get_main_queue(), ^{
 															  [[[UIAlertView alloc] initWithTitle:@"Error"
-																						  message:@"!!Could not acquire OAuth access	token. Please try again later."
+																						  message:@"!!Could not acquire OAuth access token. Please try again later."
 																						 delegate:self
 																				cancelButtonTitle:@"Dismiss"
 																				otherButtonTitles:nil] show];

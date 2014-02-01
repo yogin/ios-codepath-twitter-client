@@ -181,7 +181,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="xUo-s6-VTm">
                             <connections>
-                                <segue destination="Bhj-7W-Ihu" kind="push" id="jxx-cZ-ZAT"/>
+                                <segue destination="Bhj-7W-Ihu" kind="push" identifier="NewTweetSegue" id="jxx-cZ-ZAT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -257,9 +257,24 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YR6-ND-0z8">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eym-0X-duh"/>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="2am-JV-O61"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eym-0X-duh">
+                            <connections>
+                                <action selector="onCancelButton:" destination="Bhj-7W-Ihu" id="zcd-u1-mHx"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="2am-JV-O61">
+                            <connections>
+                                <action selector="onTweetButton:" destination="Bhj-7W-Ihu" id="kLF-c7-yiZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tweetButton" destination="2am-JV-O61" id="ndK-uV-tOw"/>
+                        <outlet property="tweetText" destination="5tb-2d-3HZ" id="tI9-Jz-rTZ"/>
+                        <outlet property="userDisplayName" destination="CTa-Kb-ucU" id="Xya-LT-3dv"/>
+                        <outlet property="userImage" destination="RSA-bp-qw8" id="nH9-Wu-Rgo"/>
+                        <outlet property="userTagName" destination="R98-1K-dud" id="1av-p4-6jA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5K3-by-MHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

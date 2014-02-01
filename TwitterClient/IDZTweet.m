@@ -44,6 +44,16 @@
 											  failure:failure];
 }
 
++ (IDZTweet *)updateStatus:(NSString *)status withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+	[[[IDZTwitterClient instance] networkManager] POST:@"1.1/statuses/update.json"
+											parameters:@{@"status": status}
+											   success:success
+											   failure:failure];
+
+	// TODO pass currentUser
+	return [[IDZTweet alloc] initWithStatus:status author:nil];
+}
 
 #pragma mark - Instance Methods
 
@@ -51,7 +61,7 @@
 {
 	self = [super init];
 	if (self) {
-		NSLog(@"new tweet with: %@", data);
+//		NSLog(@"new tweet with: %@", data);
 		self.rawTweet = data;
 		
 		NSDictionary *retweet = self.rawTweet[@"retweeted_status"];
@@ -66,6 +76,18 @@
 			self.text = self.rawTweet[@"text"];
 			self.createdAt = [self dateFromString:self.rawTweet[@"created_at"]];
 		}
+	}
+	
+	return self;
+}
+
+- (IDZTweet *)initWithStatus:(NSString *)status author:(IDZUser *)author
+{
+	self = [super init];
+	if (self) {
+		self.author = author;
+		self.text = status;
+		self.createdAt = [NSDate date];
 	}
 	
 	return self;
