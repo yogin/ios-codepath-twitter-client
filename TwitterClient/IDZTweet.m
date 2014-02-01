@@ -71,30 +71,6 @@
 	return self;
 }
 
-- (BOOL)isRetweet
-{
-	return !!self.retweeter;
-}
-
-- (NSString *)cellIdentifier
-{
-	if ([self isRetweet]) {
-		return @"RetweetCell";
-	}
-	else {
-		return @"SimpleCell";
-	}
-}
-
-- (CGFloat)paddingForCell
-{
-	if ([self isRetweet]) {
-		return 95;
-	}
-
-	return 85;
-}
-
 - (NSString *)tweetId
 {
 	return self.rawTweet[@"id_str"];
