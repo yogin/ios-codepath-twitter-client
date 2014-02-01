@@ -139,6 +139,7 @@
 {
     static NSString *CellIdentifier = @"tweetCell";
     IDZTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
     
 	IDZTweet *tweet = self.tweets[indexPath.row];
 	cell.messageText.text = tweet.text;
