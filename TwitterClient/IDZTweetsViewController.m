@@ -13,7 +13,6 @@
 #import "IDZUser.h"
 #import "IDZTweet.h"
 #import "IDZTweetCell.h"
-#import "IDZNewTweetViewController.h"
 
 @interface IDZTweetsViewController ()
 
@@ -73,6 +72,7 @@
 
 - (void)onRefresh:(id)sender forState:(UIControlState)state
 {
+	[self.tweets removeAllObjects];
     [self loadTweets];
 }
 
@@ -85,17 +85,23 @@
 
 - (void)loadTweets
 {
-	self.tweets = [[NSMutableArray alloc] init];
-	
-	[IDZTweet fetchLast:50
-			withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
-				[self appendTweets:responseObject];
-				[self.tableView reloadData];
-				[self.refreshControl endRefreshing];
-			}
-			 andFailure:^(NSURLSessionDataTask *task, NSError *error) {
-				 NSLog(@"loadTweets failure %@", error);
-			 }];
+	if (!self.tweets) {
+		NSLog(@"loading tweets!");
+		self.tweets = [[NSMutableArray alloc] init];
+		
+		[IDZTweet fetchLast:50
+				withSuccess:^(NSURLSessionDataTask *task, id responseObject) {
+					[self appendTweets:responseObject];
+					[self.tableView reloadData];
+					[self.refreshControl endRefreshing];
+				}
+				 andFailure:^(NSURLSessionDataTask *task, NSError *error) {
+					 NSLog(@"loadTweets failure %@", error);
+				 }];
+	}
+	else {
+		[self.refreshControl endRefreshing];
+	}
 }
 
 - (void)loadNextTweets:(NSTimer *)timer
@@ -123,6 +129,11 @@
 	for (NSDictionary *data in rawTweets) {
 		[self.tweets addObject:[IDZTweet tweetFromJSON:data]];
 	}
+}
+
+- (void)prependTweet:(IDZTweet *)tweet
+{
+	[self.tweets insertObject:tweet atIndex:0];
 }
 
 #pragma mark - Table view data source
@@ -205,12 +216,10 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-//	if ([[segue identifier] isEqualToString:@"NewTweetSegue"]) {
-//		IDZNewTweetViewController *newTweetController = [sender destinationViewController];
-//		newTweetController.author = nil;
-//	}
+	if ([[segue identifier] isEqualToString:@"NewTweetSegue"]) {
+		IDZNewTweetViewController *newTweetController = [segue destinationViewController];
+		newTweetController.delegate = self;
+	}
 }
 
 #pragma mark - IBActions
@@ -218,6 +227,14 @@
 - (IBAction)onLogoutButton:(id)sender
 {
 	[IDZUser logout];
+}
+
+#pragma mark - IDZNewTweetViewControllerDelegate
+
+- (void)addNewTweet:(IDZTweet *)tweet
+{
+	NSLog(@"adding new tweet to the list");
+	[self prependTweet:tweet];
 }
 
 @end

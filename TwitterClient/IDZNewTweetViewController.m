@@ -81,6 +81,9 @@
 
 - (IBAction)onTweetButton:(id)sender
 {
+	IDZTweet *newTweet = [IDZTweet updateStatus:self.tweetText.text withSuccess:nil andFailure:nil];
+	[self.delegate addNewTweet:newTweet];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)onCancelButton:(id)sender

@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "IDZUser.h"
+#import "IDZTweet.h"
+
+@protocol IDZNewTweetViewControllerDelegate <NSObject>
+
+- (void)addNewTweet:(IDZTweet *)tweet;
+
+@end
 
 @interface IDZNewTweetViewController : UIViewController <UITextViewDelegate>
 
-//@property (strong, nonatomic) IDZUser *author;
+@property (weak, nonatomic) id <IDZNewTweetViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *userDisplayName;

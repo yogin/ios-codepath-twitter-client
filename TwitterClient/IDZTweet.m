@@ -51,8 +51,7 @@
 											   success:success
 											   failure:failure];
 
-	// TODO pass currentUser
-	return [[IDZTweet alloc] initWithStatus:status author:nil];
+	return [[IDZTweet alloc] initWithStatus:status author:[IDZUser currentUser]];
 }
 
 #pragma mark - Instance Methods
