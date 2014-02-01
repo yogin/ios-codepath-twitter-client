@@ -125,7 +125,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="WwY-pB-cjT" secondAttribute="trailing" id="0xc-z8-vH7"/>
                                                 <constraint firstItem="WwY-pB-cjT" firstAttribute="leading" secondItem="gI4-tX-2To" secondAttribute="leading" constant="54" id="1Ny-jB-g45"/>
                                                 <constraint firstAttribute="bottom" secondItem="WwY-pB-cjT" secondAttribute="bottom" id="CZq-V1-qRh"/>
-                                                <constraint firstAttribute="height" constant="30" id="glY-Rl-Gyk"/>
+                                                <constraint firstAttribute="height" constant="30" placeholder="YES" id="glY-Rl-Gyk"/>
                                                 <constraint firstItem="WwY-pB-cjT" firstAttribute="top" secondItem="gI4-tX-2To" secondAttribute="top" id="nOd-1G-b3n"/>
                                             </constraints>
                                         </view>
