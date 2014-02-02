@@ -187,13 +187,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	IDZTweet *item = self.tweets[indexPath.row];
+	IDZTweet *tweet = self.tweets[indexPath.row];
 	UITextView *textView = [[UITextView alloc] init];
 	
-	CGFloat textViewHeight = [self heightForTextView:textView withItem:item];
+	CGFloat textViewHeight = [self heightForTextView:textView withItem:tweet];
 	// TODO calculate heights of other elements
+	CGFloat overheadHeight = tweet.isRetweet ? 20 : 0;
 
-	return textViewHeight;
+	return textViewHeight + overheadHeight;
 }
 
 - (CGFloat)heightForTextView:(UITextView *)textView withItem:(IDZTweet *)item
@@ -204,7 +205,7 @@
 	
 	CGRect screenRect = [[UIScreen mainScreen] bounds];
 	CGFloat width = [self isPortraitOrientation] ? screenRect.size.width : screenRect.size.height;
-	width -= 84;
+	width -= 64;//84;
 	
 	textView.dataDetectorTypes = UIDataDetectorTypeLink;
 	CGRect textRect = [textView.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
@@ -212,7 +213,7 @@
 											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
 												  context:nil];
 	
-	return textRect.size.height + 105; // 70
+	return textRect.size.height + 90;// + 105; // 70
 }
 
 
