@@ -37,6 +37,9 @@
 	self.characterCount = [[UIBarButtonItem alloc] initWithTitle:@"140" style:UIBarButtonItemStylePlain target:nil action:nil];
 //	self.characterCount.enabled = NO;
 	self.navigationItem.rightBarButtonItems = @[self.tweetButton, self.characterCount];
+
+	// start with tweet button disabled to prevent posting empty tweets
+	self.tweetButton.enabled = NO;
 	
 	IDZUser *currentUser = [IDZUser currentUser];
 	self.userDisplayName.text = currentUser.name;
