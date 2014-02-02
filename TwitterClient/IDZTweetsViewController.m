@@ -155,7 +155,12 @@
     cell.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
     
 	IDZTweet *tweet = self.tweets[indexPath.row];
+
+	// there seems to be a bug in ios7 regarding uitextviews and link detection
+	// setting the text to nil first seems to fix it
+	cell.messageText.text = nil;
 	cell.messageText.text = tweet.text;
+
 	cell.userDisplayName.text = tweet.author.name;
 	cell.userTagName.text = [NSString stringWithFormat:@"@%@", tweet.author.screenName];
 	cell.timeAgoLabel.text = tweet.elapsedCreatedAt;
