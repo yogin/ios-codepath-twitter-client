@@ -43,6 +43,8 @@
 	self.userTagName.text = [NSString stringWithFormat:@"@%@", currentUser.screenName];
 	[self.userImage setImageWithURL:[NSURL URLWithString:currentUser.profileUrl]];
 	
+	self.tweetText.text = @"";
+	[self.tweetText becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,14 +59,14 @@
 //	[attributes setValue:[UIColor lightGrayColor] forKey:UITextAttributeTextColor];
 //	[self.characterCount setTitleTextAttributes:attributes forState:UIControlStateDisabled];
 	
-	if (count >= 0) {
+	if (count >= 0 && count < 140) {
 		self.tweetButton.enabled = YES;
 		self.characterCount.title = [NSString stringWithFormat:@"%d", count];
 		self.characterCount.tintColor = [UIColor lightGrayColor];
 	}
 	else {
 		self.tweetButton.enabled = NO;
-		self.characterCount.title = [NSString stringWithFormat:@"%d", -count];
+		self.characterCount.title = [NSString stringWithFormat:@"%d", count > 0 ? count : -count];
 		self.characterCount.tintColor = [UIColor redColor];
 	}
 }
