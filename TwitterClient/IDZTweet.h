@@ -33,5 +33,6 @@
 - (IDZTweet *)initWithStatus:(NSString *)status author:(IDZUser *)author;
 - (NSString *)tweetId;
 - (NSString *)elapsedCreatedAt;
+- (BOOL)isRetweet;
 
 @end

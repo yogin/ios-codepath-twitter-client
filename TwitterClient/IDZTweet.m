@@ -97,6 +97,11 @@
 	return self.rawTweet[@"id_str"];
 }
 
+- (BOOL)isRetweet
+{
+	return !!self.retweeter;
+}
+
 - (NSString *)elapsedCreatedAt
 {
 	if (!self._elapsedCreatedAt) {
