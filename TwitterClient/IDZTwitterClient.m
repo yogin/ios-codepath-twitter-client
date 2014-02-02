@@ -12,8 +12,8 @@
 
 #define TWITTER_BASE_URL [NSURL URLWithString:@"https://api.twitter.com/"]
 
-#define TWITTER_CONSUMER_KEY @"eeRXZFGYTJ0pzdOdZimtA"
-#define TWITTER_CONSUMER_SECRET @"Z1xIDI04YgDTY2hnxWO7lHNZ97CefgRcYITzEDux0"
+#define TWITTER_CONSUMER_KEY @"GH7FU0AemrboNrOgcsVeTQ"
+#define TWITTER_CONSUMER_SECRET @"9OTdKBiifxjOddUmP3IabYsTilp2ehoatN8iGrrWXw"
 
 @interface IDZTwitterClient ()
 
