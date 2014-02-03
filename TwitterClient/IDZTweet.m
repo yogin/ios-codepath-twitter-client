@@ -74,7 +74,7 @@
 {
 	self = [super init];
 	if (self) {
-		NSLog(@"new tweet with: %@", data);
+//		NSLog(@"new tweet with: %@", data);
 		self.rawTweet = data;
 		
 		NSDictionary *retweet = self.rawTweet[@"retweeted_status"];

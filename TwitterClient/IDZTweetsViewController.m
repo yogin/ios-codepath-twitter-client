@@ -156,6 +156,12 @@
 	IDZTweet *tweet = self.tweets[indexPath.row];
 	[cell updateWithTweet:tweet indexPath:indexPath];
 
+	// add a tap gesture on the UITextView so we can click on it to access the detail view
+	// this is the only way I found to support the UITextView in readonly mode, and also detect links, and allow tapping
+	UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTextViewTap:)];
+	[gestureRecognizer setNumberOfTapsRequired:1];
+	[cell.messageText addGestureRecognizer:gestureRecognizer];
+
     if (indexPath.row > (self.tweets.count - 10) && ![self.nextTweetsTimer isValid]) {
 		// if we are close to the end of the list, we need to start loading more tweets
 		self.nextTweetsTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadNextTweets:) userInfo:nil repeats:NO];
@@ -195,6 +201,15 @@
 	return textRect.size.height + 90;// + 105; // 70
 }
 
+- (void)onTextViewTap:(UITapGestureRecognizer *)sender
+{
+	NSLog(@"message tap!");
+	if (sender.state == UIGestureRecognizerStateEnded) {
+		//	[self.delegate tweetCellMessageWasTapped:self.tweet];
+		NSLog(@"gesture: %@", sender);
+		[self performSegueWithIdentifier:@"DetailTweetSegue" sender:sender.view];
+	}
+}
 
 #pragma mark - Navigation
 
@@ -207,7 +222,9 @@
 	}
 	else if ([[segue identifier] isEqualToString:@"DetailTweetSegue"]) {
 		IDZTweetDetailViewController *detailTweetController = [segue destinationViewController];
-		int index = (int)[((IDZTweetCell*)sender) tag];
+		// this segue can be triggered either from a IDZTweetCell or a UITextView
+		// luckily both have their tags set, so it should be transparent :)
+		int index = [((UIView *)sender) tag];
 		[detailTweetController setTweet:self.tweets[index]];
 	}
 	else if ([[segue identifier] isEqualToString:@"ReplySegue"]) {

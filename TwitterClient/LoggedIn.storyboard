@@ -32,6 +32,7 @@
                                             <rect key="frame" x="59" y="54" width="261" height="118"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <gestureRecognizers/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -588,7 +589,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4B-hP-Hub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1277" y="-497"/>
+            <point key="canvasLocation" x="1488" y="-429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mPi-Nl-SAD">
@@ -620,6 +621,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9sg-OC-zqL"/>
+        <segue reference="jxx-cZ-ZAT"/>
     </inferredMetricsTieBreakers>
 </document>

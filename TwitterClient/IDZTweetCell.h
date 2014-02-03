@@ -11,6 +11,8 @@
 
 @interface IDZTweetCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UITextView *messageText;
+
 - (void)updateWithTweet:(IDZTweet *)tweet indexPath:(NSIndexPath *)indexPath;
 
 @end
