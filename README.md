@@ -18,9 +18,9 @@ Features:
 Screenshots:
 ------------
 
-![Timeline](http://cl.ly/image/021P0v2F1v04/iOS%20Simulator%20Screen%20shot%20Feb%203,%202014,%202.27.08%20PM.png)
-![Tweet Details](http://cl.ly/image/3D410a2z273v/iOS%20Simulator%20Screen%20shot%20Feb%203,%202014,%202.28.04%20PM.png)
-![Composing a Tweet](http://cl.ly/image/2F2k1a0s3X2m/iOS%20Simulator%20Screen%20shot%20Feb%203,%202014,%202.28.34%20PM.png)
+![Timeline](http://cl.ly/image/063w2E1k1d1b/iOS%20Simulator%20Screen%20shot%20Feb%203,%202014,%202.27.08%20PM.png)
+![Tweet Details](http://cl.ly/image/280Z1f3Z3K1C/iOS%20Simulator%20Screen%20shot%20Feb%203,%202014,%202.27.51%20PM.png)
+![Composing a Tweet](http://cl.ly/image/2B1R450M371G/iOS%20Simulator%20Screen%20shot%20Feb%203,%202014,%202.28.34%20PM.png)
 
 Possible Improvements:
 ----------------------
