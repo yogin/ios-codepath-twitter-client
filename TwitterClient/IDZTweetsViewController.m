@@ -155,6 +155,7 @@
     cell.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
     
 	IDZTweet *tweet = self.tweets[indexPath.row];
+	cell.tag = indexPath.row;
 
 	// there seems to be a bug in ios7 regarding uitextviews and link detection
 	// setting the text to nil first seems to fix it
@@ -225,6 +226,11 @@
 	if ([[segue identifier] isEqualToString:@"NewTweetSegue"]) {
 		IDZNewTweetViewController *newTweetController = [segue destinationViewController];
 		newTweetController.delegate = self;
+	}
+	else if ([[segue identifier] isEqualToString:@"DetailTweetSegue"]) {
+		IDZTweetDetailViewController *detailTweetController = [segue destinationViewController];
+		int index = (int)[((IDZTweetCell*)sender) tag];
+		[detailTweetController setTweet:self.tweets[index]];
 	}
 }
 

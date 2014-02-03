@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "IDZNewTweetViewController.h"
+#import "IDZTweetDetailViewController.h"
 
 @interface IDZTweetsViewController : UITableViewController <IDZNewTweetViewControllerDelegate>
 
