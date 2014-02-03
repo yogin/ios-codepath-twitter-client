@@ -15,6 +15,7 @@
 @property (strong, nonatomic, readwrite) NSString *text;
 @property (strong, nonatomic, readwrite) NSDate *createdAt;
 @property NSString *_elapsedCreatedAt;
+@property NSString *_displayCreatedAt;
 
 @end
 
@@ -60,7 +61,7 @@
 {
 	self = [super init];
 	if (self) {
-//		NSLog(@"new tweet with: %@", data);
+		NSLog(@"new tweet with: %@", data);
 		self.rawTweet = data;
 		
 		NSDictionary *retweet = self.rawTweet[@"retweeted_status"];
@@ -75,6 +76,12 @@
 			self.text = self.rawTweet[@"text"];
 			self.createdAt = [self dateFromString:self.rawTweet[@"created_at"]];
 		}
+		
+		self.favoriteCount = [self.rawTweet[@"favorite_count"] integerValue];
+		self.isFavorite = [self.rawTweet[@"favorited"] boolValue];
+		
+		self.retweetCount = [self.rawTweet[@"retweet_count"] integerValue];
+		self.isRetweeted = [self.rawTweet[@"retweeted"] boolValue];
 	}
 	
 	return self;
@@ -130,6 +137,17 @@
 	}
 	
 	return self._elapsedCreatedAt;
+}
+
+- (NSString *)displayCreatedAt
+{
+	if (!self._displayCreatedAt) {
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"M/d/yy, h:mm a"];
+		self._displayCreatedAt = [formatter stringFromDate:self.createdAt];
+	}
+	
+	return self._displayCreatedAt;
 }
 
 - (NSDate *)dateFromString:(NSString *)string

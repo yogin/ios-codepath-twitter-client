@@ -16,6 +16,11 @@
 @property (strong, nonatomic, readonly) NSDate *createdAt;
 @property (strong, nonatomic, readonly) NSString *text;
 
+@property int favoriteCount;
+@property BOOL isFavorite;
+@property int retweetCount;
+@property BOOL isRetweeted;
+
 
 #pragma mark - Class Methods
 
@@ -33,6 +38,7 @@
 - (IDZTweet *)initWithStatus:(NSString *)status author:(IDZUser *)author;
 - (NSString *)tweetId;
 - (NSString *)elapsedCreatedAt;
+- (NSString *)displayCreatedAt;
 - (BOOL)isRetweet;
 
 @end
