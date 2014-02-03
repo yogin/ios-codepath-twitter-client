@@ -203,10 +203,7 @@
 
 - (void)onTextViewTap:(UITapGestureRecognizer *)sender
 {
-	NSLog(@"message tap!");
 	if (sender.state == UIGestureRecognizerStateEnded) {
-		//	[self.delegate tweetCellMessageWasTapped:self.tweet];
-		NSLog(@"gesture: %@", sender);
 		[self performSegueWithIdentifier:@"DetailTweetSegue" sender:sender.view];
 	}
 }
