@@ -75,10 +75,6 @@
 	self.overheadView.frame = viewFrame;
 }
 
-- (IBAction)onReply:(id)sender
-{
-}
-
 - (IBAction)onFavorite:(id)sender
 {
 	if (self.tweet.isFavorite) {
