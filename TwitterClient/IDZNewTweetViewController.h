@@ -20,5 +20,6 @@
 
 @property (weak, nonatomic) id <IDZNewTweetViewControllerDelegate> delegate;
 
+- (void)prepareForReply:(IDZTweet *)tweet;
 
 @end

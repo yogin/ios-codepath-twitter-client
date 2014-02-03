@@ -18,10 +18,10 @@
 @property (weak, nonatomic) IBOutlet UITextView *messageText;
 @property (weak, nonatomic) IBOutlet UILabel *overheadTitle;
 @property (weak, nonatomic) IBOutlet UIView *overheadView;
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
 
 - (IBAction)onFavorite:(id)sender;
 - (IBAction)onRetweet:(id)sender;
-- (IBAction)onReply:(id)sender;
 
 @property (strong, nonatomic) IDZTweet *tweet;
 
@@ -49,6 +49,7 @@
 {
 	self.tweet = tweet;
 	self.tag = indexPath.row;
+	self.replyButton.tag = self.tag;
 
 	self.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
 

@@ -8,6 +8,7 @@
 
 #import "IDZTweetDetailViewController.h"
 #import <UIImageView+AFNetworking.h>
+#import "IDZNewTweetViewController.h"
 
 @interface IDZTweetDetailViewController ()
 
@@ -126,8 +127,14 @@
 	[self updateRetweetCount];
 }
 
-- (IBAction)onReply:(id)sender
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+	if ([[segue identifier] isEqualToString:@"ReplySegue"]) {
+		IDZNewTweetViewController *replyViewController = [segue destinationViewController];
+		[replyViewController prepareForReply:self.tweet];
+	}
 }
 
 @end

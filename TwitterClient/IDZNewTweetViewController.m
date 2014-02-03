@@ -22,6 +22,8 @@
 - (IBAction)onTweetButton:(id)sender;
 - (IBAction)onCancelButton:(id)sender;
 
+@property (strong, nonatomic) IDZTweet *tweet;
+
 @end
 
 @implementation IDZNewTweetViewController
@@ -38,7 +40,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 
 	self.tweetText.delegate = self;
 
@@ -55,22 +56,25 @@
 	self.userTagName.text = [NSString stringWithFormat:@"@%@", currentUser.screenName];
 	[self.userImage setImageWithURL:[NSURL URLWithString:currentUser.profileUrl]];
 	
-	self.tweetText.text = @"";
+	self.tweetText.text = self.tweet ? [NSString stringWithFormat:@"@%@ ", self.tweet.author.screenName] : @"";
 	[self.tweetText becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void)updateNavigationButtonsWithCount:(int)count
+- (void)viewDidAppear:(BOOL)animated
 {
-//	NSDictionary *attributes = [self.characterCount titleTextAttributesForState:UIControlStateNormal];
-//	[attributes setValue:[UIColor lightGrayColor] forKey:UITextAttributeTextColor];
-//	[self.characterCount setTitleTextAttributes:attributes forState:UIControlStateDisabled];
-	
+	[super viewDidAppear:animated];
+	[self updateNavigationButtonsWithCount];
+}
+
+- (void)updateNavigationButtonsWithCount
+{
+	int count = 140 - (int)self.tweetText.text.length;
+
 	if (count >= 0 && count < 140) {
 		self.tweetButton.enabled = YES;
 		self.characterCount.title = [NSString stringWithFormat:@"%d", count];
@@ -83,12 +87,17 @@
 	}
 }
 
+- (void)prepareForReply:(IDZTweet *)tweet
+{
+	self.tweet = tweet;
+}
+
 #pragma mark - UITextView Delegate
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-	int count = 140 - (int)textView.text.length;
-	[self updateNavigationButtonsWithCount:count];
+//	int count = 140 - (int)textView.text.length;
+	[self updateNavigationButtonsWithCount];
 }
 
 #pragma mark - Actions

@@ -51,7 +51,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="onReply:" destination="86r-RK-qk7" eventType="touchUpInside" id="ORm-Pe-Mz8"/>
+                                                        <segue destination="Bhj-7W-Ihu" kind="push" identifier="ReplySegue" id="9sg-OC-zqL"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFD-gJ-GGa">
@@ -188,6 +188,7 @@
                                     <outlet property="messageText" destination="XLM-YB-yKM" id="qnI-Sb-8Oj"/>
                                     <outlet property="overheadTitle" destination="WwY-pB-cjT" id="6j0-Aa-T9W"/>
                                     <outlet property="overheadView" destination="gI4-tX-2To" id="JiZ-OC-FTA"/>
+                                    <outlet property="replyButton" destination="GcR-mf-F2X" id="gSb-dF-7DD"/>
                                     <outlet property="timeAgoLabel" destination="U6d-JC-wu2" id="efi-zQ-qA8"/>
                                     <outlet property="userDisplayName" destination="IzC-Bu-RoI" id="flg-BR-3Jv"/>
                                     <outlet property="userImage" destination="eJV-wG-4kf" id="Va1-yq-1ad"/>
@@ -306,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5K3-by-MHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1327" y="345"/>
+            <point key="canvasLocation" x="1685" y="425"/>
         </scene>
         <!--Tweet Detail View Controller - Tweet-->
         <scene sceneID="pxM-QR-n86">
@@ -467,7 +468,7 @@
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="onReply:" destination="OFX-hw-W2P" eventType="touchUpInside" id="BXq-MM-K3Z"/>
+                                                            <segue destination="Bhj-7W-Ihu" kind="push" identifier="ReplySegue" id="CMi-rY-d0H"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tG-3M-2AY">
@@ -587,7 +588,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4B-hP-Hub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1327" y="-363"/>
+            <point key="canvasLocation" x="1277" y="-497"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mPi-Nl-SAD">
@@ -618,4 +619,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="9sg-OC-zqL"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -210,6 +210,12 @@
 		int index = (int)[((IDZTweetCell*)sender) tag];
 		[detailTweetController setTweet:self.tweets[index]];
 	}
+	else if ([[segue identifier] isEqualToString:@"ReplySegue"]) {
+		IDZNewTweetViewController *replyViewController = [segue destinationViewController];
+		int index = (int)[((IDZTweetCell*)sender) tag];
+		replyViewController.delegate = self;
+		[replyViewController prepareForReply:self.tweets[index]];
+	}
 }
 
 #pragma mark - IBActions
