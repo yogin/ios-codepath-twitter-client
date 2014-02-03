@@ -183,7 +183,7 @@
                                     <outlet property="userDisplayName" destination="IzC-Bu-RoI" id="flg-BR-3Jv"/>
                                     <outlet property="userImage" destination="eJV-wG-4kf" id="Va1-yq-1ad"/>
                                     <outlet property="userTagName" destination="QRN-xO-ezP" id="Cpm-Ih-ieh"/>
-                                    <segue destination="OFX-hw-W2P" kind="push" id="7t4-z2-inz"/>
+                                    <segue destination="OFX-hw-W2P" kind="push" identifier="DetailTweetSegue" id="7t4-z2-inz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -325,10 +325,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="BCH-he-aDt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gOD-je-LLq" secondAttribute="top" id="6FE-dN-0bj"/>
                                     <constraint firstItem="BCH-he-aDt" firstAttribute="leading" secondItem="gOD-je-LLq" secondAttribute="leading" constant="52" id="G7E-RV-Nu3"/>
                                     <constraint firstAttribute="height" constant="18" id="ICe-32-e03"/>
-                                    <constraint firstItem="BCH-he-aDt" firstAttribute="top" secondItem="gOD-je-LLq" secondAttribute="top" constant="2" id="Ndy-ma-UIK"/>
+                                    <constraint firstItem="BCH-he-aDt" firstAttribute="top" secondItem="gOD-je-LLq" secondAttribute="top" constant="2" id="VDt-41-TNz"/>
                                     <constraint firstAttribute="trailing" secondItem="BCH-he-aDt" secondAttribute="trailing" id="XXs-OZ-yCG"/>
                                     <constraint firstAttribute="bottom" secondItem="BCH-he-aDt" secondAttribute="bottom" id="muH-Pk-nAx"/>
                                 </constraints>
@@ -364,19 +363,17 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Qm-dA-b0O">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qm-dA-b0O">
                                         <rect key="frame" x="0.0" y="49" width="280" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="eUd-vU-e2d"/>
-                                        </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-R6-PDc">
-                                        <rect key="frame" x="0.0" y="207" width="280" height="241"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-R6-PDc">
+                                        <rect key="frame" x="0.0" y="199" width="280" height="249"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/29/14, 08:22 AM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4B-BD-lsf">
@@ -500,6 +497,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" priority="500" constant="249" id="03S-4a-TWD"/>
                                             <constraint firstItem="MtK-N4-Dad" firstAttribute="leading" secondItem="gwB-ns-0K7" secondAttribute="trailing" constant="8" id="1Hk-7t-2M5"/>
                                             <constraint firstAttribute="trailing" secondItem="dbw-gq-g7W" secondAttribute="trailing" id="6vW-b9-esa"/>
                                             <constraint firstItem="gPP-oZ-8LT" firstAttribute="leading" secondItem="MtK-N4-Dad" secondAttribute="trailing" constant="8" id="A3O-3b-vr5"/>
@@ -527,18 +525,18 @@
                                 <constraints>
                                     <constraint firstItem="0Qm-dA-b0O" firstAttribute="top" secondItem="YgB-nz-nFg" secondAttribute="bottom" constant="4" id="0fd-VG-1ii"/>
                                     <constraint firstItem="fXa-jQ-Qf0" firstAttribute="top" secondItem="TeC-UU-7Xs" secondAttribute="top" id="1K9-E2-Lx2"/>
-                                    <constraint firstItem="iXw-R6-PDc" firstAttribute="top" secondItem="0Qm-dA-b0O" secondAttribute="bottom" constant="8" id="BCl-k4-6Qk"/>
+                                    <constraint firstItem="iXw-R6-PDc" firstAttribute="top" secondItem="0Qm-dA-b0O" secondAttribute="bottom" id="BCl-k4-6Qk"/>
                                     <constraint firstItem="iXw-R6-PDc" firstAttribute="leading" secondItem="TeC-UU-7Xs" secondAttribute="leading" id="Erp-XT-KNy"/>
+                                    <constraint firstItem="XQe-FV-tDp" firstAttribute="leading" secondItem="TeC-UU-7Xs" secondAttribute="leading" constant="52" id="Hf0-mx-a4M"/>
                                     <constraint firstItem="YgB-nz-nFg" firstAttribute="leading" secondItem="TeC-UU-7Xs" secondAttribute="leading" id="L3b-KH-y6E"/>
-                                    <constraint firstItem="XQe-FV-tDp" firstAttribute="leading" secondItem="YgB-nz-nFg" secondAttribute="trailing" constant="8" id="Rks-YD-dQn"/>
                                     <constraint firstItem="YgB-nz-nFg" firstAttribute="top" secondItem="TeC-UU-7Xs" secondAttribute="top" id="cSz-0f-D5V"/>
                                     <constraint firstAttribute="bottom" secondItem="iXw-R6-PDc" secondAttribute="bottom" id="egf-2x-Z9e"/>
                                     <constraint firstItem="XQe-FV-tDp" firstAttribute="top" secondItem="fXa-jQ-Qf0" secondAttribute="bottom" constant="-1" id="fcT-T9-fIU"/>
                                     <constraint firstAttribute="trailing" secondItem="XQe-FV-tDp" secondAttribute="trailing" id="fog-qq-2pi"/>
+                                    <constraint firstItem="fXa-jQ-Qf0" firstAttribute="leading" secondItem="TeC-UU-7Xs" secondAttribute="leading" constant="52" id="gcI-rX-yjW"/>
                                     <constraint firstAttribute="trailing" secondItem="0Qm-dA-b0O" secondAttribute="trailing" id="iz9-eK-eyC"/>
                                     <constraint firstItem="0Qm-dA-b0O" firstAttribute="leading" secondItem="TeC-UU-7Xs" secondAttribute="leading" id="nQg-KN-wqP"/>
                                     <constraint firstAttribute="trailing" secondItem="iXw-R6-PDc" secondAttribute="trailing" id="sNg-Qd-7as"/>
-                                    <constraint firstItem="fXa-jQ-Qf0" firstAttribute="leading" secondItem="YgB-nz-nFg" secondAttribute="trailing" constant="8" id="u0L-wI-BCL"/>
                                     <constraint firstAttribute="trailing" secondItem="fXa-jQ-Qf0" secondAttribute="trailing" id="wz3-yV-by8"/>
                                 </constraints>
                             </view>
@@ -556,6 +554,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tweet" id="yEM-iO-Kdj"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="favoriteCount" destination="MtK-N4-Dad" id="hZv-VN-aaG"/>
+                        <outlet property="messageText" destination="0Qm-dA-b0O" id="bkt-0L-56e"/>
+                        <outlet property="overheadHeightConstraint" destination="ICe-32-e03" id="gmF-SV-auj"/>
+                        <outlet property="overheadTitle" destination="BCH-he-aDt" id="HBL-JI-jVI"/>
+                        <outlet property="overheadView" destination="gOD-je-LLq" id="8KT-gG-sgc"/>
+                        <outlet property="retweetCount" destination="HKj-Vf-Ng4" id="Awa-x4-BDd"/>
+                        <outlet property="timeLabel" destination="S4B-BD-lsf" id="MRA-Sb-kmg"/>
+                        <outlet property="userDisplayName" destination="fXa-jQ-Qf0" id="Lgs-BE-ilZ"/>
+                        <outlet property="userImage" destination="YgB-nz-nFg" id="NV2-Sg-YgS"/>
+                        <outlet property="userTagName" destination="XQe-FV-tDp" id="qfI-bm-VVT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4B-hP-Hub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

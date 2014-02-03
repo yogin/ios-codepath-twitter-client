@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IDZTweet.h"
 
 @interface IDZTweetDetailViewController : UIViewController
+
+@property (strong, nonatomic) IDZTweet *tweet;
 
 @end

@@ -7,8 +7,24 @@
 //
 
 #import "IDZTweetDetailViewController.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface IDZTweetDetailViewController ()
+
+@property (weak, nonatomic) IBOutlet UIView *overheadView;
+@property (weak, nonatomic) IBOutlet UILabel *overheadTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *overheadHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
+@property (weak, nonatomic) IBOutlet UILabel *userTagName;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property (weak, nonatomic) IBOutlet UITextView *messageText;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageTextHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UILabel *retweetCount;
+@property (weak, nonatomic) IBOutlet UILabel *favoriteCount;
 
 @end
 
@@ -29,10 +45,40 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+
+	self.userDisplayName.text = self.tweet.author.name;
+	self.userTagName.text = [NSString stringWithFormat:@"@%@", self.tweet.author.screenName];
+	self.timeLabel.text = self.tweet.elapsedCreatedAt;
+	[self.userImage setImageWithURL:[NSURL URLWithString:self.tweet.author.profileUrl]];
+
+    self.messageText.translatesAutoresizingMaskIntoConstraints = YES;
+	self.messageText.text = self.tweet.text;
+	[self.messageText sizeToFit];
+
+//	self.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
+
+	if (self.tweet.isRetweet) {
+		self.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.retweeter.name];
+	}
+	else {
+		self.overheadTitle.text = nil;
+		self.overheadHeightConstraint.constant = 0;
+	}
+	
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)isPortraitOrientation
+{
+	return [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait;
 }
 
 @end
