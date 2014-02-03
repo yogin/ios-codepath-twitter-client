@@ -71,7 +71,7 @@
 
 - (void)onRefresh:(id)sender forState:(UIControlState)state
 {
-	[self.tweets removeAllObjects];
+	self.tweets = nil;
     [self loadTweets];
 }
 

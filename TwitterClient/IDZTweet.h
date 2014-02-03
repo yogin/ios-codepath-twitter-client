@@ -21,6 +21,7 @@
 @property int retweetCount;
 @property BOOL isRetweeted;
 
+@property (strong, nonatomic) NSString *retweetId;
 
 #pragma mark - Class Methods
 
@@ -40,5 +41,11 @@
 - (NSString *)elapsedCreatedAt;
 - (NSString *)displayCreatedAt;
 - (BOOL)isRetweet;
+
+- (void)addToFavorites;
+- (void)removeFromFavorites;
+
+- (void)retweet;
+- (void)unretweet;
 
 @end

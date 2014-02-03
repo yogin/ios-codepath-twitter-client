@@ -31,7 +31,8 @@
 + (void)fetchLast:(int)limit withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
 	[[[IDZTwitterClient instance] networkManager] GET:@"1.1/statuses/home_timeline.json"
-										   parameters:@{@"count": @(limit)}
+										   parameters:@{@"count": @(limit),
+														@"include_my_retweet": @(YES)}
 											  success:success
 											  failure:failure];
 }
@@ -40,7 +41,8 @@
 {
 	[[[IDZTwitterClient instance] networkManager] GET:@"1.1/statuses/home_timeline.json"
 										   parameters:@{@"count": @(limit),
-														@"max_id": maxId}
+														@"max_id": maxId,
+														@"include_my_retweet": @(YES)}
 											  success:success
 											  failure:failure];
 }
@@ -82,6 +84,10 @@
 		
 		self.retweetCount = [self.rawTweet[@"retweet_count"] integerValue];
 		self.isRetweeted = [self.rawTweet[@"retweeted"] boolValue];
+		
+		if (self.rawTweet[@"current_user_retweet"]) {
+			self.retweetId = self.rawTweet[@"current_user_retweet"][@"id_str"];
+		}
 	}
 	
 	return self;
@@ -156,6 +162,77 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
 	return [formatter dateFromString:string];
+}
+
+- (void)addToFavorites
+{
+	if (!self.isFavorite) {
+		self.isFavorite = YES;
+		self.favoriteCount += 1;
+
+		[[[IDZTwitterClient instance] networkManager] POST:@"1.1/favorites/create.json"
+												parameters:@{@"id": self.tweetId}
+												   success:nil
+												   failure:^(NSURLSessionDataTask *task, NSError *error) {
+													   self.favoriteCount -= 1;
+													   self.isFavorite = NO;
+												   }];
+	}
+}
+
+- (void)removeFromFavorites
+{
+	if (self.isFavorite) {
+		self.isFavorite = NO;
+		self.favoriteCount -= 1;
+
+		[[[IDZTwitterClient instance] networkManager] POST:@"1.1/favorites/destroy.json"
+												parameters:@{@"id": self.tweetId}
+												   success:nil
+												   failure:^(NSURLSessionDataTask *task, NSError *error) {
+													   self.favoriteCount += 1;
+													   self.isFavorite = YES;
+												   }];
+	}
+}
+
+- (void)retweet
+{
+	if (!self.isRetweeted) {
+		self.isRetweeted = YES;
+		self.retweetCount += 1;
+		
+		NSString *url = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", self.tweetId];
+		[[[IDZTwitterClient instance] networkManager] POST:url
+												parameters:nil
+												   success:^(NSURLSessionDataTask *task, id responseObject) {
+													   self.retweetId = responseObject[@"id_str"];
+												   }
+												   failure:^(NSURLSessionDataTask *task, NSError *error) {
+													   self.isRetweeted = NO;
+													   self.retweetCount -= 1;
+												   }];
+	}
+}
+
+- (void)unretweet
+{
+	if (self.isRetweeted) {
+		self.isRetweeted = NO;
+		self.retweetCount -= 1;
+		
+		NSString *url = [NSString stringWithFormat:@"1.1/statuses/destroy/%@.json", self.retweetId];
+		[[[IDZTwitterClient instance] networkManager] POST:url
+												parameters:nil
+												   success:^(NSURLSessionDataTask *task, id responseObject) {
+													   self.retweetId = nil;
+												   }
+												   failure:^(NSURLSessionDataTask *task, NSError *error) {
+													   NSLog(@"unretweet error: %@", error);
+													   self.isRetweeted = YES;
+													   self.retweetCount += 1;
+												   }];
+	}
 }
 
 @end

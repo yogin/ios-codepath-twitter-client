@@ -457,6 +457,9 @@
                                                         <state key="normal" image="01-refresh.png">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="onReply:" destination="OFX-hw-W2P" eventType="touchUpInside" id="BXq-MM-K3Z"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tG-3M-2AY">
                                                         <rect key="frame" x="52" y="5" width="16" height="16"/>
@@ -468,6 +471,9 @@
                                                         <state key="normal" image="02-redo.png">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="onRetweet:" destination="OFX-hw-W2P" eventType="touchUpInside" id="ClE-9Y-Oyv"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kd-sd-sIo">
                                                         <rect key="frame" x="98" y="5" width="16" height="16"/>
@@ -479,6 +485,9 @@
                                                         <state key="normal" image="28-star.png">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="onFavorite:" destination="OFX-hw-W2P" eventType="touchUpInside" id="7QP-aO-xec"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -554,11 +563,13 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="favoriteCount" destination="MtK-N4-Dad" id="hZv-VN-aaG"/>
+                        <outlet property="favoriteLabel" destination="gPP-oZ-8LT" id="gfP-te-2dW"/>
                         <outlet property="messageText" destination="0Qm-dA-b0O" id="bkt-0L-56e"/>
                         <outlet property="overheadHeightConstraint" destination="gMF-GS-ESg" id="ulx-22-kfi"/>
                         <outlet property="overheadTitle" destination="BCH-he-aDt" id="HBL-JI-jVI"/>
                         <outlet property="overheadView" destination="gOD-je-LLq" id="8KT-gG-sgc"/>
                         <outlet property="retweetCount" destination="HKj-Vf-Ng4" id="Awa-x4-BDd"/>
+                        <outlet property="retweetLabel" destination="gwB-ns-0K7" id="qIi-vS-MYb"/>
                         <outlet property="timeLabel" destination="S4B-BD-lsf" id="MRA-Sb-kmg"/>
                         <outlet property="userDisplayName" destination="fXa-jQ-Qf0" id="Lgs-BE-ilZ"/>
                         <outlet property="userImage" destination="YgB-nz-nFg" id="NV2-Sg-YgS"/>

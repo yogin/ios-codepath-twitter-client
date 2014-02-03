@@ -24,6 +24,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *retweetCount;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteCount;
+@property (weak, nonatomic) IBOutlet UILabel *favoriteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
+
+- (IBAction)onFavorite:(id)sender;
+- (IBAction)onRetweet:(id)sender;
+- (IBAction)onReply:(id)sender;
 
 @end
 
@@ -47,6 +53,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+
+	NSLog(@"tweet details %@", self.tweet);
 	
 	self.userDisplayName.text = self.tweet.author.name;
 	self.userTagName.text = [NSString stringWithFormat:@"@%@", self.tweet.author.screenName];
@@ -65,8 +73,8 @@
 		self.overheadHeightConstraint.constant = 0;
 	}
 	
-	self.favoriteCount.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
-	self.retweetCount.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
+	[self updateFavoriteCount];
+	[self updateRetweetCount];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,6 +86,48 @@
 - (BOOL)isPortraitOrientation
 {
 	return [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait;
+}
+
+- (void)updateFavoriteCount
+{
+	self.favoriteCount.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
+	self.favoriteLabel.textColor = self.tweet.isFavorite ? [UIColor orangeColor] : [UIColor lightGrayColor];
+}
+
+- (void)updateRetweetCount
+{
+	self.retweetCount.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
+	self.retweetLabel.textColor = self.tweet.isRetweeted ? [UIColor orangeColor] : [UIColor lightGrayColor];
+}
+
+#pragma mark - Actions
+
+- (IBAction)onFavorite:(id)sender
+{
+	if (self.tweet.isFavorite) {
+		[self.tweet removeFromFavorites];
+	}
+	else {
+		[self.tweet addToFavorites];
+	}
+
+	[self updateFavoriteCount];
+}
+
+- (IBAction)onRetweet:(id)sender
+{
+	if (self.tweet.isRetweeted) {
+		[self.tweet unretweet];
+	}
+	else {
+		[self.tweet retweet];
+	}
+
+	[self updateRetweetCount];
+}
+
+- (IBAction)onReply:(id)sender
+{
 }
 
 @end
