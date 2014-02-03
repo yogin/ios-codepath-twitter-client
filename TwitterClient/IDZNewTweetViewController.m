@@ -13,6 +13,15 @@
 
 @property (strong, nonatomic) UIBarButtonItem *characterCount;
 
+@property (weak, nonatomic) IBOutlet UIImageView *userImage;
+@property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
+@property (weak, nonatomic) IBOutlet UILabel *userTagName;
+@property (weak, nonatomic) IBOutlet UITextView *tweetText;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tweetButton;
+
+- (IBAction)onTweetButton:(id)sender;
+- (IBAction)onCancelButton:(id)sender;
+
 @end
 
 @implementation IDZNewTweetViewController
