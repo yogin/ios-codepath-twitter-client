@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Anthony Powles. All rights reserved.
 //
 
-#import <UIImageView+AFNetworking.h>
+//#import <UIImageView+AFNetworking.h>
 
 #import "IDZTweetsViewController.h"
 #import "IDZTwitterClient.h"
@@ -152,31 +152,9 @@
 {
     static NSString *CellIdentifier = @"tweetCell";
     IDZTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
     
 	IDZTweet *tweet = self.tweets[indexPath.row];
-	cell.tag = indexPath.row;
-
-	// there seems to be a bug in ios7 regarding uitextviews and link detection
-	// setting the text to nil first seems to fix it
-	cell.messageText.text = nil;
-	cell.messageText.text = tweet.text;
-
-	cell.userDisplayName.text = tweet.author.name;
-	cell.userTagName.text = [NSString stringWithFormat:@"@%@", tweet.author.screenName];
-	cell.timeAgoLabel.text = tweet.elapsedCreatedAt;
-	[cell.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
-
-	CGFloat overheadHeight = 0;
-	
-	if (tweet.retweeter) {
-		overheadHeight = 30;
-		cell.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name];
-	}
-
-	CGRect viewFrame = cell.overheadView.frame;
-	viewFrame.size.height = overheadHeight;
-	cell.overheadView.frame = viewFrame;
+	[cell updateWithTweet:tweet indexPath:indexPath];
 
     if (indexPath.row > (self.tweets.count - 10) && ![self.nextTweetsTimer isValid]) {
 		// if we are close to the end of the list, we need to start loading more tweets

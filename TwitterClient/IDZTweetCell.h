@@ -7,15 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IDZTweet.h"
 
 @interface IDZTweetCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
-@property (weak, nonatomic) IBOutlet UILabel *userTagName;
-@property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
-@property (weak, nonatomic) IBOutlet UITextView *messageText;
-@property (weak, nonatomic) IBOutlet UILabel *overheadTitle;
-@property (weak, nonatomic) IBOutlet UIView *overheadView;
+- (void)updateWithTweet:(IDZTweet *)tweet indexPath:(NSIndexPath *)indexPath;
 
 @end
