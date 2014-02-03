@@ -19,6 +19,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *overheadTitle;
 @property (weak, nonatomic) IBOutlet UIView *overheadView;
 
+- (IBAction)onFavorite:(id)sender;
+- (IBAction)onRetweet:(id)sender;
+- (IBAction)onReply:(id)sender;
+
+@property (strong, nonatomic) IDZTweet *tweet;
+
 @end
 
 @implementation IDZTweetCell
@@ -41,6 +47,7 @@
 
 - (void)updateWithTweet:(IDZTweet *)tweet indexPath:(NSIndexPath *)indexPath
 {
+	self.tweet = tweet;
 	self.tag = indexPath.row;
 
 	self.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
@@ -65,6 +72,30 @@
 	CGRect viewFrame = self.overheadView.frame;
 	viewFrame.size.height = overheadHeight;
 	self.overheadView.frame = viewFrame;
+}
+
+- (IBAction)onReply:(id)sender
+{
+}
+
+- (IBAction)onFavorite:(id)sender
+{
+	if (self.tweet.isFavorite) {
+		[self.tweet removeFromFavorites];
+	}
+	else {
+		[self.tweet addToFavorites];
+	}
+}
+
+- (IBAction)onRetweet:(id)sender
+{
+	if (self.tweet.isRetweeted) {
+		[self.tweet unretweet];
+	}
+	else {
+		[self.tweet retweet];
+	}
 }
 
 @end
