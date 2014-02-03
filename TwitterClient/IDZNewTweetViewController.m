@@ -96,7 +96,6 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-//	int count = 140 - (int)textView.text.length;
 	[self updateNavigationButtonsWithCount];
 }
 
@@ -104,7 +103,15 @@
 
 - (IBAction)onTweetButton:(id)sender
 {
-	IDZTweet *newTweet = [IDZTweet updateStatus:self.tweetText.text withSuccess:nil andFailure:nil];
+	IDZTweet *newTweet;
+	
+	if (self.tweet) {
+		newTweet = [IDZTweet replyStatus:self.tweetText.text toStatus:self.tweet.tweetId withSuccess:nil andFailure:nil];
+	}
+	else {
+		newTweet = [IDZTweet updateStatus:self.tweetText.text withSuccess:nil andFailure:nil];
+	}
+	
 	[self.delegate addNewTweet:newTweet];
 	[self.navigationController popViewControllerAnimated:YES];
 }

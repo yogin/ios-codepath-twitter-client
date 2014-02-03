@@ -30,7 +30,6 @@
 
 - (IBAction)onFavorite:(id)sender;
 - (IBAction)onRetweet:(id)sender;
-- (IBAction)onReply:(id)sender;
 
 @end
 

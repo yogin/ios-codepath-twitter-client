@@ -33,6 +33,8 @@
 
 + (IDZTweet *)updateStatus:(NSString *)status withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
++ (IDZTweet *)replyStatus:(NSString *)status toStatus:(NSString *)originalStatusId withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 #pragma mark - Instance Methods
 
 - (IDZTweet *)initFromJSON:(NSDictionary *)data;

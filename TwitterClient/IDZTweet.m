@@ -57,6 +57,17 @@
 	return [[IDZTweet alloc] initWithStatus:status author:[IDZUser currentUser]];
 }
 
++ (IDZTweet *)replyStatus:(NSString *)status toStatus:(NSString *)originalStatusId withSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success andFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+	[[[IDZTwitterClient instance] networkManager] POST:@"1.1/statuses/update.json"
+											parameters:@{@"status": status,
+														 @"in_reply_to_status_id": originalStatusId}
+											   success:success
+											   failure:failure];
+	
+	return [[IDZTweet alloc] initWithStatus:status author:[IDZUser currentUser]];
+}
+
 #pragma mark - Instance Methods
 
 - (IDZTweet *)initFromJSON:(NSDictionary *)data
