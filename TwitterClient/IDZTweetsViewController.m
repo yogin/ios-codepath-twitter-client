@@ -176,7 +176,7 @@
 	UITextView *textView = [[UITextView alloc] init];
 	
 	CGFloat textViewHeight = [self heightForTextView:textView withItem:tweet];
-	// TODO calculate heights of other elements
+	// TODO better heights calculations
 	CGFloat overheadHeight = tweet.isRetweet ? 20 : 0;
 
 	return textViewHeight + overheadHeight;
@@ -219,6 +219,7 @@
 	}
 	else if ([[segue identifier] isEqualToString:@"DetailTweetSegue"]) {
 		IDZTweetDetailViewController *detailTweetController = [segue destinationViewController];
+		detailTweetController.delegate = self;
 		// this segue can be triggered either from a IDZTweetCell or a UITextView
 		// luckily both have their tags set, so it should be transparent :)
 		int index = [((UIView *)sender) tag];
@@ -243,7 +244,6 @@
 
 - (void)addNewTweet:(IDZTweet *)tweet
 {
-	NSLog(@"adding new tweet to the list");
 	[self prependTweet:tweet];
 }
 

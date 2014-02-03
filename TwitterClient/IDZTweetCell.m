@@ -46,6 +46,7 @@
 	self.tweet = tweet;
 	self.tag = indexPath.row;
 	self.replyButton.tag = self.tag;
+	self.messageText.tag = self.tag;
 
 	self.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
 

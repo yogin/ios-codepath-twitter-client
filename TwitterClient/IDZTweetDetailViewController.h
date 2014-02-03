@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "IDZTweet.h"
+#import "IDZNewTweetViewController.h"
 
-@interface IDZTweetDetailViewController : UIViewController
+@interface IDZTweetDetailViewController : UIViewController <IDZNewTweetViewControllerDelegate>
+
+@property (weak, nonatomic) id <IDZNewTweetViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) IDZTweet *tweet;
 

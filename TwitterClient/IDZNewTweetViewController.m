@@ -113,7 +113,7 @@
 	}
 	
 	[self.delegate addNewTweet:newTweet];
-	[self.navigationController popViewControllerAnimated:YES];
+	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)onCancelButton:(id)sender

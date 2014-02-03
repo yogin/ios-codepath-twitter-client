@@ -132,8 +132,16 @@
 {
 	if ([[segue identifier] isEqualToString:@"ReplySegue"]) {
 		IDZNewTweetViewController *replyViewController = [segue destinationViewController];
+		replyViewController.delegate = self;
 		[replyViewController prepareForReply:self.tweet];
 	}
+}
+
+#pragma mark - IDZNewTweetViewControllerDelegate
+
+- (void)addNewTweet:(IDZTweet *)tweet
+{
+	[self.delegate addNewTweet:tweet];
 }
 
 @end
