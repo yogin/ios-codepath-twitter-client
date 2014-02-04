@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @property (weak, nonatomic) IBOutlet UITextView *messageText;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageTextHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *retweetCount;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteCount;
@@ -54,16 +55,15 @@
 {
 	[super viewWillAppear:animated];
 
-	NSLog(@"tweet details %@", self.tweet);
+//	NSLog(@"tweet details %@", self.tweet);
 	
 	self.userDisplayName.text = self.tweet.author.name;
 	self.userTagName.text = [NSString stringWithFormat:@"@%@", self.tweet.author.screenName];
 	self.timeLabel.text = self.tweet.displayCreatedAt;
 	[self.userImage setImageWithURL:[NSURL URLWithString:self.tweet.author.profileUrl]];
 
-    self.messageText.translatesAutoresizingMaskIntoConstraints = YES;
 	self.messageText.text = self.tweet.text;
-	[self.messageText sizeToFit];
+	self.messageTextHeightConstraint.constant = [self heightForTextView] + 25;
 
 	if (self.tweet.isRetweet) {
 		self.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.retweeter.name];
@@ -75,6 +75,21 @@
 	
 	[self updateFavoriteCount];
 	[self updateRetweetCount];
+}
+
+- (CGFloat)heightForTextView
+{
+	CGRect screenRect = [[UIScreen mainScreen] bounds];
+	CGFloat width = [self isPortraitOrientation] ? screenRect.size.width : screenRect.size.height;
+	width -= 40;
+	
+	self.messageText.dataDetectorTypes = UIDataDetectorTypeLink;
+	CGRect textRect = [self.messageText.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+														  options:NSStringDrawingUsesLineFragmentOrigin
+													   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
+														  context:nil];
+	
+	return textRect.size.height;
 }
 
 - (void)didReceiveMemoryWarning
