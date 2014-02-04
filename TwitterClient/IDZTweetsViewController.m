@@ -175,10 +175,10 @@
 	UITextView *textView = [[UITextView alloc] init];
 	
 	CGFloat textViewHeight = [self heightForTextView:textView withItem:tweet];
-	// TODO better heights calculations
-	CGFloat overheadHeight = tweet.isRetweet ? 20 : 0;
-
-	return textViewHeight + overheadHeight;
+	CGFloat heightPadding = tweet.isRetweet ? 20 : 0; // (overhead)
+	heightPadding += 25 + 27 + 25; // (actions + user + extra)
+	
+	return textViewHeight + heightPadding;
 }
 
 - (CGFloat)heightForTextView:(UITextView *)textView withItem:(IDZTweet *)item
@@ -197,7 +197,7 @@
 											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}
 												  context:nil];
 	
-	return textRect.size.height + 90;// + 105; // 70
+	return textRect.size.height;
 }
 
 - (void)onTextViewTap:(UITapGestureRecognizer *)sender
