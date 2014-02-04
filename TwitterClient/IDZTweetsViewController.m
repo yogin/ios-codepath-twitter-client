@@ -85,7 +85,6 @@
 - (void)loadTweets
 {
 	if (!self.tweets) {
-		NSLog(@"loading tweets!");
 		self.tweets = [[NSMutableArray alloc] init];
 		
 		[IDZTweet fetchLast:50
@@ -222,7 +221,7 @@
 		detailTweetController.delegate = self;
 		// this segue can be triggered either from a IDZTweetCell or a UITextView
 		// luckily both have their tags set, so it should be transparent :)
-		int index = [((UIView *)sender) tag];
+		int index = (int)[((UIView *)sender) tag];
 		[detailTweetController setTweet:self.tweets[index]];
 	}
 	else if ([[segue identifier] isEqualToString:@"ReplySegue"]) {
