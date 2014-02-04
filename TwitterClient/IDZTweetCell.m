@@ -16,8 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *userTagName;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *overheadTitle;
-@property (weak, nonatomic) IBOutlet UIView *overheadView;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *overheadHeightConstraint;
 
 - (IBAction)onFavorite:(id)sender;
 - (IBAction)onRetweet:(id)sender;
@@ -48,8 +48,6 @@
 	self.replyButton.tag = self.tag;
 	self.messageText.tag = self.tag;
 
-	self.overheadView.translatesAutoresizingMaskIntoConstraints = YES;
-
 	// there seems to be a bug in ios7 regarding uitextviews and link detection
 	// setting the text to nil first seems to fix it
 	self.messageText.text = nil;
@@ -60,16 +58,13 @@
 	self.timeAgoLabel.text = tweet.elapsedCreatedAt;
 	[self.userImage setImageWithURL:[NSURL URLWithString:tweet.author.profileUrl]];
 	
-	CGFloat overheadHeight = 0;
-	
 	if (tweet.retweeter) {
-		overheadHeight = 30;
+		self.overheadHeightConstraint.constant = 30;
 		self.overheadTitle.text = [NSString stringWithFormat:@"%@ retweeted", tweet.retweeter.name];
 	}
-	
-	CGRect viewFrame = self.overheadView.frame;
-	viewFrame.size.height = overheadHeight;
-	self.overheadView.frame = viewFrame;
+	else {
+		self.overheadHeightConstraint.constant = 0;
+	}
 }
 
 - (IBAction)onFavorite:(id)sender
